@@ -35,7 +35,10 @@ struct ExtensionDeepLink: Sendable, Equatable {
 
     static func claims(_ url: URL) -> Bool {
         guard let scheme = url.scheme?.lowercased() else { return false }
-        return ["raycast", "tinycast", "tinycast-dev", "com.raycast", "raycastinternal"].contains(scheme)
+        return [
+            "raycast", "tinycast", "tinycast-dev", "tinycast-sonoma", "tinycast-sonoma-dev",
+            "com.raycast", "raycastinternal",
+        ].contains(scheme)
     }
 
     /// Reads back through `route(url:)`, owner-scoped names included; `scheme` is the channel's.

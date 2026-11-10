@@ -1551,58 +1551,6 @@
         }
       }
     },
-    "%@ hasn't been downloaded yet." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ wurde noch nicht geladen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ aún no se ha descargado."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ n’a pas encore été téléchargé."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@はまだダウンロードされていません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@이(가) 아직 다운로드되지 않았습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ ainda não foi baixado."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ ещё не загружено."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ 尚未下载。"
-          }
-        }
-      }
-    },
     "%@ installs" : {
       "localizations" : {
         "de" : {
@@ -19858,6 +19806,64 @@
         }
       }
     },
+    "Add a provider above." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge oben einen Anbieter hinzu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a provider above."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade un proveedor arriba."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez un fournisseur ci-dessus."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上にプロバイダーを追加してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위에서 공급자를 추가하세요."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione um provedor acima."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавьте провайдера выше."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在上方添加一个提供方。"
+          }
+        }
+      }
+    },
     "Add an API key in Settings." : {
       "localizations" : {
         "de" : {
@@ -23081,422 +23087,6 @@
         }
       }
     },
-    "Apple Intelligence could not complete the response." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence konnte die Antwort nicht abschließen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence no pudo completar la respuesta."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence n’a pas pu terminer la réponse."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceは応答を完了できませんでした。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence가 응답을 완료하지 못했습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence não conseguiu concluir a resposta."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence не удалось завершить ответ."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 无法完成回复。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence declined to answer that." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence hat die Antwort darauf abgelehnt."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence rechazó responder a eso."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence a refusé de répondre à cela."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceはその質問への回答を辞退しました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence가 해당 질문에 답변하지 않았습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence recusou-se a responder a isso."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence отказался отвечать на это."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 拒绝回答该问题。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence does not support this language yet." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence unterstützt diese Sprache noch nicht."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence aún no es compatible con este idioma."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence ne prend pas encore en charge cette langue."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceはまだこの言語に対応していません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence가 아직 이 언어를 지원하지 않습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence ainda não é compatível com este idioma."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence пока не поддерживает этот язык."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 尚不支持此语言。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence is already answering. Try again shortly." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence antwortet bereits. Versuche es gleich noch einmal."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence ya está respondiendo. Vuelve a intentarlo en unos instantes."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence est déjà en train de répondre. Réessayez dans un instant."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceはすでに回答中です。しばらくしてからもう一度お試しください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence가 이미 응답 중입니다. 잠시 후 다시 시도하십시오."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence já está respondendo. Tente novamente em instantes."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence уже отвечает. Повторите попытку чуть позже."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 正在回答。请稍后重试。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence is busy. Try again shortly." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence ist beschäftigt. Versuche es gleich noch einmal."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence está ocupado. Vuelve a intentarlo en unos instantes."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence est occupé. Réessayez dans un instant."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceは処理中です。しばらくしてからもう一度お試しください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence가 사용 중입니다. 잠시 후 다시 시도하십시오."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence está ocupada. Tente novamente em instantes."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence занят. Повторите попытку чуть позже."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 正忙。请稍后重试。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence is currently unavailable. Check its status in System Settings." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence ist derzeit nicht verfügbar. Prüfe den Status in den Systemeinstellungen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence no está disponible actualmente. Consulta su estado en Ajustes del Sistema."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence est actuellement indisponible. Consultez son état dans Réglages Système."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceは現在利用できません。システム設定で状態を確認してください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "현재 Apple Intelligence를 사용할 수 없습니다. 시스템 설정에서 상태를 확인하십시오."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence está indisponível no momento. Verifique o status nos Ajustes do Sistema."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence сейчас недоступен. Проверьте его статус в Системных настройках."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 目前不可用。请在“系统设置”中查看其状态。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence is disabled in AI Settings." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence ist in den KI-Einstellungen deaktiviert."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence está desactivado en los ajustes de IA."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence est désactivé dans les réglages IA."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple IntelligenceはAI設定で無効になっています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence가 AI 설정에서 비활성화되어 있습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence está desativada nos Ajustes de IA."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence отключён в настройках ИИ."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 已在 AI 设置中停用。"
-          }
-        }
-      }
-    },
-    "Apple Intelligence runs on this Mac. Nothing leaves it." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence läuft auf diesem Mac. Nichts verlässt ihn."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence se ejecuta en este Mac. Nada sale de él."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence s’exécute sur ce Mac. Rien n’en sort."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple IntelligenceはこのMac上で実行されます。データが外部に送信されることはありません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence는 이 Mac에서 실행되며 어떤 데이터도 외부로 전송되지 않습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Apple Intelligence é executada neste Mac. Nada sai dele."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence работает на этом Mac. Данные не покидают его."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 在这台 Mac 上运行，数据不会离开本机。"
-          }
-        }
-      }
-    },
     "Apple Shortcut" : {
       "localizations" : {
         "de" : {
@@ -23649,58 +23239,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple 翻译不支持此语言对。"
-          }
-        }
-      }
-    },
-    "Apple's translator, on this Mac. A language downloads on first use." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Der Übersetzer von Apple, auf diesem Mac. Eine Sprache wird bei der ersten Verwendung geladen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El traductor de Apple, en este Mac. Un idioma se descarga la primera vez que se usa."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traduction sur ce Mac avec le service d’Apple. Les langues sont téléchargées à leur première utilisation."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "このMac上のAppleの翻訳。言語は初回使用時にダウンロードされます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이 Mac의 Apple 번역기입니다. 언어는 처음 사용할 때 다운로드됩니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O tradutor da Apple, neste Mac. Um idioma é baixado no primeiro uso."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Переводчик Apple на этом Mac. Язык загружается при первом использовании."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple 翻译，在这台 Mac 上运行。语言会在首次使用时下载。"
           }
         }
       }
@@ -26435,58 +25973,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自动"
-          }
-        }
-      }
-    },
-    "Automatically check for updates" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisch nach Updates suchen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar actualizaciones automáticamente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechercher automatiquement les mises à jour"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートを自動的に確認"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 자동 확인"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar atualizações automaticamente"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматически проверять обновления"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自动检查更新"
           }
         }
       }
@@ -32254,110 +31740,6 @@
         }
       }
     },
-    "Check for Updates" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nach Updates suchen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar actualizaciones"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechercher les mises à jour"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートを確認"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 확인"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar atualizações"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверить обновления"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "检查更新"
-          }
-        }
-      }
-    },
-    "Check for Updates…" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nach Updates suchen …"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar actualizaciones…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rechercher les mises à jour…"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートを確認…"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 확인…"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar atualizações…"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверить обновления…"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "检查更新…"
-          }
-        }
-      }
-    },
     "Checkbox" : {
       "comment" : "Accessibility label for an untitled checkbox (noun)",
       "localizations" : {
@@ -32459,58 +31841,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正在检查 %@…"
-          }
-        }
-      }
-    },
-    "Checking for updates…" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suche nach Updates …"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscando actualizaciones…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recherche de mises à jour…"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートを確認中…"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 확인 중…"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscando atualizações…"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверка обновлений…"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正在检查更新…"
           }
         }
       }
@@ -34906,58 +34236,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "清除…"
-          }
-        }
-      }
-    },
-    "Click **Translation Languages…** in Language & Region, then download it." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klicke in „Sprache & Region“ auf **Übersetzungssprachen …** und lade sie dann."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haz clic en **Idiomas de traducción…** en Idioma y región y descárgalo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cliquez sur **Langues de traduction…** dans Langue et région, puis téléchargez-la."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「言語と地域」で**「翻訳言語…」**をクリックしてから、ダウンロードしてください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "언어 및 지역에서 **번역 언어…**를 클릭한 다음 다운로드하십시오."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clique em **Idiomas de Tradução…** em Idioma e Região e depois baixe-o."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нажмите **«Языки для перевода…»** в разделе «Язык и регион», затем загрузите его."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在“语言与地区”中点按**翻译语言…**，然后下载它。"
           }
         }
       }
@@ -88518,58 +87796,6 @@
         }
       }
     },
-    "Open Language & Region" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„Sprache & Region“ öffnen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir Idioma y región"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrir Langue et région"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「言語と地域」を開く"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "언어 및 지역 열기"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir Idioma e Região"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открыть «Язык и регион»"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "打开“语言与地区”"
-          }
-        }
-      }
-    },
     "Open Meeting Links In" : {
       "localizations" : {
         "de" : {
@@ -104845,58 +104071,6 @@
         }
       }
     },
-    "Same as this Mac" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wie dieser Mac"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Igual que este Mac"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Langue de ce Mac"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "このMacと同じ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이 Mac과 동일"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Igual a este Mac"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Как на этом Mac"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "与这台 Mac 相同"
-          }
-        }
-      }
-    },
     "Save" : {
       "localizations" : {
         "de" : {
@@ -109008,54 +108182,60 @@
         }
       }
     },
-    "Sent even when the system prompt is off, but never to Apple Intelligence." : {
+    "Sent even when the system prompt is off." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wird auch gesendet, wenn der System-Prompt aus ist, aber nie an Apple Intelligence."
+            "value" : "Wird auch gesendet, wenn der Systemprompt ausgeschaltet ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sent even when the system prompt is off."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se envían incluso con las instrucciones del sistema desactivadas, pero nunca a Apple Intelligence."
+            "value" : "Se envía incluso cuando el prompt del sistema está desactivado."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envoyées même quand les instructions système sont désactivées, mais jamais à Apple Intelligence."
+            "value" : "Envoyé même lorsque l’invite système est désactivée."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "システムプロンプトがオフのときも送信されますが、Apple Intelligenceには送信されません。"
+            "value" : "システムプロンプトがオフでも送信されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "시스템 프롬프트가 꺼져 있어도 전송되지만, Apple Intelligence에는 전송되지 않습니다."
+            "value" : "시스템 프롬프트가 꺼져 있어도 전송됩니다."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enviadas mesmo com o prompt do sistema desativado, mas nunca para a Apple Intelligence."
+            "value" : "Enviado mesmo quando o prompt do sistema está desativado."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отправляются, даже если системные инструкции выключены, но никогда — в Apple Intelligence."
+            "value" : "Отправляется, даже если системная подсказка выключена."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "即使关闭了系统提示词也会发送，但绝不会发送给 Apple Intelligence。"
+            "value" : "即使系统提示已关闭也会发送。"
           }
         }
       }
@@ -127554,58 +126734,6 @@
         }
       }
     },
-    "Tinycast %@ could not be installed. Check for updates to try again." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast %@ konnte nicht installiert werden. Suche nach Updates, um es erneut zu versuchen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo instalar Tinycast %@. Busca actualizaciones para volver a intentarlo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast %@ n’a pas pu être installé. Recherchez les mises à jour pour réessayer."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast %@ をインストールできませんでした。もう一度アップデートを確認してください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast %@을(를) 설치할 수 없습니다. 업데이트를 다시 확인해 보세요."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não foi possível instalar o Tinycast %@. Procure atualizações para tentar novamente."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось установить Tinycast %@. Проверьте обновления, чтобы повторить попытку."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无法安装 Tinycast %@。请检查更新后重试。"
-          }
-        }
-      }
-    },
     "Tinycast Needs Accessibility Access" : {
       "localizations" : {
         "de" : {
@@ -131209,110 +130337,6 @@
         }
       }
     },
-    "Translate" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übersetzen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traducir"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traduire"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "翻訳"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "번역"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traduzir"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Перевести"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "翻译"
-          }
-        }
-      }
-    },
-    "Translate to" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übersetzen in"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traducir a"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traduire en"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "翻訳先"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "번역할 언어"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Traduzir para"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Перевести на"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "翻译为"
-          }
-        }
-      }
-    },
     "Translating…" : {
       "localizations" : {
         "de" : {
@@ -132037,110 +131061,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提高音量"
-          }
-        }
-      }
-    },
-    "Turn on Apple Intelligence in System Settings to chat on device." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiviere Apple Intelligence in den Systemeinstellungen, um lokal zu chatten."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activa Apple Intelligence en Ajustes del Sistema para chatear en el dispositivo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activez Apple Intelligence dans Réglages Système pour discuter sur l’appareil."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "デバイス上でチャットするには、システム設定でApple Intelligenceをオンにしてください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기기에서 채팅하려면 시스템 설정에서 Apple Intelligence를 켜십시오."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ative Apple Intelligence nos Ajustes do Sistema para conversar no dispositivo."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включите Apple Intelligence в Системных настройках, чтобы общаться с моделью на устройстве."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在系统设置中开启 Apple Intelligence，即可在设备上聊天。"
-          }
-        }
-      }
-    },
-    "Turn on Apple Intelligence, or add a provider above." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiviere Apple Intelligence oder füge oben einen Anbieter hinzu."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activa Apple Intelligence o añade un proveedor arriba."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activez Apple Intelligence ou ajoutez un fournisseur ci-dessus."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligenceをオンにするか、上でプロバイダを追加してください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence를 켜거나 위에서 제공업체를 추가하십시오."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ative Apple Intelligence ou adicione um provedor acima."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включите Apple Intelligence или добавьте провайдера выше."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "开启 Apple Intelligence，或在上方添加提供商。"
           }
         }
       }
@@ -134416,110 +133336,6 @@
         }
       }
     },
-    "Update failed" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktualisierung fehlgeschlagen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error al actualizar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La mise à jour a échoué"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートに失敗しました"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 실패"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A atualização falhou"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обновление не удалось"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更新失败"
-          }
-        }
-      }
-    },
-    "Update ready" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktualisierung bereit"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Actualización lista"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mise à jour prête"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートの準備完了"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 준비 완료"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atualização pronta"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обновление готово"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更新已就绪"
-          }
-        }
-      }
-    },
     "Updated %@" : {
       "comment" : "When the calculator's exchange rates were fetched; %@ is a day and time, such as “today at 10:45 AM”",
       "localizations" : {
@@ -134569,110 +133385,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新于 %@"
-          }
-        }
-      }
-    },
-    "Updated to Tinycast %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auf Tinycast %@ aktualisiert"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Actualizado a Tinycast %@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mis à jour vers Tinycast %@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast %@ にアップデートしました"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast %@(으)로 업데이트됨"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atualizado para Tinycast %@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinycast обновлён до %@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已更新到 Tinycast %@"
-          }
-        }
-      }
-    },
-    "Updates available" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Updates verfügbar"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Actualizaciones disponibles"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mises à jour disponibles"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アップデートがあります"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "업데이트 사용 가능"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atualizações disponíveis"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Доступны обновления"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "有可用更新"
           }
         }
       }
@@ -138226,58 +136938,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你可以从访达的废纸篓中恢复。"
-          }
-        }
-      }
-    },
-    "You can still check for updates manually." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„Nach Updates suchen“ bleibt auch bei Deaktivierung verfügbar."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar actualizaciones sigue disponible aunque esté desactivado."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La recherche manuelle reste disponible."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "オフにしても「アップデートを確認」は引き続き使用できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "끄더라도 ‘업데이트 확인’은 계속 사용할 수 있습니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar atualizações continua disponível quando desativado."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пункт «Проверить обновления» остаётся доступным, когда это выключено."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "关闭后，“检查更新”仍然可用。"
           }
         }
       }

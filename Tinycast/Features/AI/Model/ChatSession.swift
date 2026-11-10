@@ -41,7 +41,7 @@ struct ChatSession: Equatable, Sendable {
             updatedAt: updatedAt, messageCount: messages.count)
     }
 
-    /// `textBudget` is the route's, not the chat's: on-device windows hold far less than a cloud.
+    /// `textBudget` is the route's, not the chat's.
     func requestMessages(textBudget: Int = Self.defaultTextBudget) -> [AIMessage] {
         Self.boundedContext(
             historyMessages.map { message in

@@ -174,8 +174,6 @@ final class LauncherCoordinator {
             core.quickActionCoordinator.run(.fixGrammar)
         case .rewrite:
             core.quickActionCoordinator.run(.rewrite)
-        case .translate:
-            core.quickActionCoordinator.run(.translate)
         case .summarize:
             core.quickActionCoordinator.run(.summarize)
         case .calculatorHistory:
@@ -257,9 +255,6 @@ final class LauncherCoordinator {
         case .importFromRaycast:
             dismissPalette()
             settingsCoordinator.showBackupSettings()
-        case .checkForUpdates:
-            dismissPalette()
-            core.updateCoordinator.checkForUpdates()
         case .settings:
             dismissPalette()
             settingsCoordinator.showSettings()

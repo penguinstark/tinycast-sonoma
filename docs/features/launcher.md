@@ -633,8 +633,8 @@ execution semantics.
 
 ## Quick Actions
 
-`AppEntry.Kind.quickAction` is one section holding both halves. `CommandID.fixGrammar`, `.rewrite`,
-`.translate` and `.summarize` publish the shipped four while `quickActionsEnabled` is on, each
+`AppEntry.Kind.quickAction` is one section holding both halves. `CommandID.fixGrammar`, `.rewrite`
+and `.summarize` publish the shipped three while `quickActionsEnabled` is on, each
 carrying the action's own title and glyph so the launcher row and the settings row can never drift.
 `CommandID.init(_ action: BuiltInQuickAction)` is exhaustive, so a fifth cannot reach the launcher
 without one. They report `CommandID.entryKind`, the one place a catalog command claims a section other

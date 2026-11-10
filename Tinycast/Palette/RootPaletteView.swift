@@ -864,7 +864,7 @@ struct RootPaletteView: View {
                     accessory, isOpen: openMenu == .extensionAccessory,
                     action: toggleExtensionSearchAccessory)
             }
-            if isCollapsed { UpdatePill() }
+            if isCollapsed { headerGutter(width: metrics.spacing.md) }
             // The slack above and below, so the pill stays concentric with the capsule.
             headerGutter(width: isCollapsed ? metrics.size.headerPadding : metrics.spacing.md * 2)
         }
@@ -1014,7 +1014,6 @@ struct RootPaletteView: View {
         HStack(spacing: 0) {
             HStack(spacing: 0) {
                 appMenuButton
-                UpdatePill()
             }
             .modifier(ExtensionToastSlot(extensions: extensions, showing: vm.mode == .extensionCommand))
             if showActionGroup {

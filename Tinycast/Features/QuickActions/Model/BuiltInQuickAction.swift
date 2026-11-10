@@ -3,7 +3,6 @@ import Foundation
 enum BuiltInQuickAction: String, CaseIterable, Codable, Identifiable, Sendable {
     case fixGrammar
     case rewrite
-    case translate
     case summarize
 
     var id: String { rawValue }
@@ -15,7 +14,6 @@ enum BuiltInQuickAction: String, CaseIterable, Codable, Identifiable, Sendable {
         switch self {
         case .fixGrammar: return "Fix Grammar"
         case .rewrite: return "Rewrite"
-        case .translate: return "Translate"
         case .summarize: return "Summarize"
         }
     }
@@ -24,7 +22,6 @@ enum BuiltInQuickAction: String, CaseIterable, Codable, Identifiable, Sendable {
         switch self {
         case .fixGrammar: return "textformat"
         case .rewrite: return "wand.and.sparkles"
-        case .translate: return "translate"
         case .summarize: return "text.line.3.summary"
         }
     }
@@ -33,7 +30,6 @@ enum BuiltInQuickAction: String, CaseIterable, Codable, Identifiable, Sendable {
         switch self {
         case .fixGrammar: return String(localized: "Fixing Grammar…")
         case .rewrite: return String(localized: "Rewriting…")
-        case .translate: return String(localized: "Translating…")
         case .summarize: return String(localized: "Summarizing…")
         }
     }
@@ -43,6 +39,4 @@ enum BuiltInQuickAction: String, CaseIterable, Codable, Identifiable, Sendable {
     var replacesDirectlyByDefault: Bool { self == .fixGrammar }
 
     var showsDiff: Bool { self == .fixGrammar || self == .rewrite }
-
-    var usesTranslationFramework: Bool { self == .translate }
 }

@@ -233,11 +233,6 @@ final class AIChatCoordinator {
 
     var presets: [ChatPreset] { core.chatPresets.presets }
 
-    /// The on-device model takes no standing instructions, so its chats show no preset.
-    func offersPresets(for chat: AIChatState) -> Bool {
-        model(for: chat)?.isOnDevice != true
-    }
-
     func addChatPreset(_ draft: ChatPreset) throws(ChatPresetError) {
         try core.chatPresets.add(draft)
     }
@@ -363,14 +358,12 @@ final class AIChatCoordinator {
             return AIInstructions.compose(
                 userPrompt: core.aiSettings.systemPrompt,
                 isEnabled: core.aiSettings.systemPromptEnabled,
-                offersChoices: core.aiSettings.choicesEnabled,
-                model: model(for: chat))
+                offersChoices: core.aiSettings.choicesEnabled)
         }
         return AIInstructions.compose(
             presetInstructions: preset.instructions,
             preambleEnabled: core.aiSettings.systemPromptEnabled,
-            offersChoices: core.aiSettings.choicesEnabled,
-            model: model(for: chat))
+            offersChoices: core.aiSettings.choicesEnabled)
     }
 
     private func provider(for chat: AIChatState, scopedTo slug: String?) throws -> any AIProvider {
@@ -452,7 +445,6 @@ final class AIChatCoordinator {
     /// What the chat's model can take; the composer offers only what applies.
     func capabilities(for chat: AIChatState) -> AIModelCapabilities {
         switch model(for: chat) {
-        case .appleIntelligence?: return .appleIntelligence
         case .codex?: return .codex
         case .claude?: return .claudeCommand
         case .openCode(let model, _)?:
@@ -469,10 +461,8 @@ final class AIChatCoordinator {
         }
     }
 
-    /// How much history the chat's route can hold; the on-device window is far smaller.
     func contextBudget(for chat: AIChatState) -> Int {
-        model(for: chat)?.isOnDevice == true
-            ? AppleIntelligence.contextBudget : ChatSession.defaultTextBudget
+        ChatSession.defaultTextBudget
     }
 
     /// The context card's facts; the gauge redraws per flush, so it skips the card's model title.
@@ -632,8 +622,6 @@ final class AIChatCoordinator {
     /// A route removed in Settings falls back to the default rather than failing the chat.
     private func isReachable(_ selection: AIModelSelection) -> Bool {
         switch selection {
-        case .appleIntelligence:
-            return true
         case .api(let connection, let model, _):
             return core.aiSettings.connection(id: connection)?.models.contains(model) == true
         case .codex, .claude, .grok, .openCode, .cursor:
@@ -683,7 +671,6 @@ final class AIChatCoordinator {
     /// From the selection, not the loaded list: the list arrives after the picker first paints.
     func modelIcon(of selected: AIModelSelection?) -> PopoverMenuIcon {
         switch selected {
-        case .appleIntelligence?: return AIModelOption.appleIntelligenceIcon
         case .codex?: return .asset(AIBrand.openAI.assetName)
         case .claude?: return .asset(AIBrand.claude.assetName)
         case .grok?: return .asset(AIBrand.grok.assetName)

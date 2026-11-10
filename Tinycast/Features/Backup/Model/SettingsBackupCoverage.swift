@@ -12,7 +12,6 @@ enum SettingsBackupCoverage {
         "hyperKeyQuickPress": .hyperKeyQuickPress,
         "hyperKeySecureInputCompatibility": .hyperKeySecureInputCompatibility,
         "showInMenuBar": .showInMenuBar,
-        "automaticallyCheckForUpdates": .automaticallyCheckForUpdates,
         "emojiSkinTone": .emojiSkinTone,
         "emojiGridColumns": .emojiGridColumns,
         "popToRootSeconds": .popToRootTimeout,
@@ -163,7 +162,7 @@ enum SettingsBackupCoverage {
             "Names the models of this Mac's own installed tools and connections, which another Mac "
             + "may not have.",
         AppSettingsKey.aiDisabledRoutes.rawValue:
-            "Names this Mac's own API connections and on-device model, which travel in no backup.",
+            "Names this Mac's own API connections, which travel in no backup.",
         AppSettingsKey.aiInstalledOverrides.rawValue:
             "Names a command to run and the variables to run it with; an import must never decide "
             + "which program this Mac launches.",
@@ -187,8 +186,6 @@ enum SettingsBackupCoverage {
             + "decision each Mac makes about its own text.",
         AppSettingsKey.quickActionInstructions.rawValue:
             "Custom model instructions change transformed results and must not move unseen.",
-        AppSettingsKey.quickActionLanguage.rawValue:
-            "Follows the language the person at this Mac reads, not the one who wrote the backup.",
         AppSettingsKey.snippetsFolder.rawValue:
             "Names a folder on this Mac; the one a backup lands on may not have it.",
         AppSettingsKey.notesFolder.rawValue:

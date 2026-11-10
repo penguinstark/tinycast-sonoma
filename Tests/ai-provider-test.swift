@@ -20,28 +20,21 @@ struct AIProviderTests {
         for prompt in [nil, "", "   \n\t "] as [String?] {
             expect(
                 AIInstructions.compose(
-                    userPrompt: prompt, isEnabled: true, offersChoices: false, model: cloud)
+                    userPrompt: prompt, isEnabled: true, offersChoices: false)
                     == AIPreamble.text,
                 "an absent or blank user prompt with choices off sends the preamble alone")
         }
         expect(
             AIInstructions.compose(
-                userPrompt: "  Answer only in haiku.  ", isEnabled: true, offersChoices: true,
-                model: cloud)
+                userPrompt: "  Answer only in haiku.  ", isEnabled: true, offersChoices: true)
                 == AIPreamble.text + "\n\n" + AIPreamble.choices + "\n\nAnswer only in haiku.",
             "instructions put the preamble and its choices before the trimmed user prompt")
         for prompt in [nil, "Answer only in haiku."] as [String?] {
             expect(
                 AIInstructions.compose(
-                    userPrompt: prompt, isEnabled: false, offersChoices: true, model: cloud)
+                    userPrompt: prompt, isEnabled: false, offersChoices: true)
                     == nil,
                 "disabled instructions withhold the preamble, its choices and the user prompt")
-            expect(
-                AIInstructions.compose(
-                    userPrompt: prompt, isEnabled: true, offersChoices: true,
-                    model: .appleIntelligence)
-                    == nil,
-                "the on-device model gets no preamble, choices or user prompt")
         }
         expect(
             (AIPreamble.text + AIPreamble.choices).count < 1_800,
@@ -49,25 +42,16 @@ struct AIProviderTests {
     }
 
     static func presetInstructionsReplaceTheUserPrompt() {
-        let cloud = AIModelSelection.codex(model: "gpt-5", effort: nil)
         expect(
             AIInstructions.compose(
-                presetInstructions: " Review for SEO. ", preambleEnabled: true, offersChoices: false,
-                model: cloud)
+                presetInstructions: " Review for SEO. ", preambleEnabled: true, offersChoices: false)
                 == AIPreamble.text + "\n\nReview for SEO.",
             "a preset's text follows the preamble in place of the user prompt")
         expect(
             AIInstructions.compose(
-                presetInstructions: "Review for SEO.", preambleEnabled: false, offersChoices: true,
-                model: cloud)
+                presetInstructions: "Review for SEO.", preambleEnabled: false, offersChoices: true)
                 == "Review for SEO.",
             "with the system prompt off, the preset's text still rides, alone")
-        expect(
-            AIInstructions.compose(
-                presetInstructions: "Review for SEO.", preambleEnabled: true, offersChoices: true,
-                model: .appleIntelligence)
-                == nil,
-            "the on-device model gets no preset")
     }
 
     static func presetsPersistAndNeverOverwriteAnUnreadableFile() {
@@ -205,7 +189,7 @@ struct AIProviderTests {
         aFailedKeychainReadIsNeverSavedOver()
         aLaunchInheritsTheReadersVariablesNotTinycastsOwn()
         subscriptionSelectionsReconcile()
-        onDeviceSelectionsRoundTripAndLead()
+        legacyChatGPTSelectionMigrates()
         conversationSettingsPersistAndDecide()
         toolCatalogsAndTurnsEncodePerProvider()
         toolArgumentsSurviveArrivingInFragments()
@@ -336,9 +320,6 @@ struct AIProviderTests {
             connection.capabilities(for: "claude").tools,
             "both HTTP shapes speak tool calling natively")
         expect(
-            !AIModelCapabilities.appleIntelligence.tools,
-            "the on-device model reaches nothing, so it is offered nothing to reach with")
-        expect(
             !AIModelCapabilities.chatGPT.tools,
             "and the hosted ChatGPT route declines tools by design")
         expect(
@@ -353,7 +334,6 @@ struct AIProviderTests {
             !AIModelSelection.grok(model: "grok", effort: nil).runsItsOwnTools
                 && !AIModelSelection.cursor(model: "auto", effort: nil).runsItsOwnTools
                 && !AIModelSelection.openCode(model: "m", effort: nil).runsItsOwnTools
-                && !AIModelSelection.appleIntelligence.runsItsOwnTools
                 && !AIModelSelection.api(connection: UUID(), model: "m", effort: nil)
                     .runsItsOwnTools,
             "every other route either runs Tinycast's loop or has nothing to call")
@@ -1788,21 +1768,7 @@ struct AIProviderTests {
         expect(reopened.expandsReasoning, "Expand thinking persists")
     }
 
-    static func onDeviceSelectionsRoundTripAndLead() {
-        let encoded = try? JSONEncoder().encode(AIModelSelection.appleIntelligence)
-        let decoded = encoded.flatMap { try? JSONDecoder().decode(AIModelSelection.self, from: $0) }
-        expect(decoded == .appleIntelligence, "the on-device selection survives a round trip")
-        expect(
-            AIModelSelection.appleIntelligence.model == AppleIntelligence.modelID,
-            "the on-device selection reports a stable model id")
-        expect(
-            AIModelSelection.appleIntelligence.source == .appleIntelligence,
-            "the on-device selection is its own source")
-        expect(
-            AIModelSelection.appleIntelligence.isOnDevice
-                && !AIModelSelection.codex(model: "gpt-5", effort: nil).isOnDevice,
-            "only the on-device selection reads as on device")
-
+    static func legacyChatGPTSelectionMigrates() {
         let legacy = Data(#"{"chatGPT":{"model":"gpt-5","effort":"high"}}"#.utf8)
         expect(
             (try? JSONDecoder().decode(AIModelSelection.self, from: legacy))
@@ -1812,13 +1778,7 @@ struct AIProviderTests {
         let suite = "AIProviderTests.onDevice"
         let defaults = isolatedDefaults(suite)
         defer { discardSuite(suite, defaults) }
-
-        let store = AISettingsStore(defaults: defaults, isAppleIntelligenceAvailable: { true })
-        expect(
-            store.defaultModel == .appleIntelligence,
-            "the on-device route is the default on an unconfigured Mac")
-
-        // A configured connection must not be displaced by resolution running a second time.
+        let store = AISettingsStore(defaults: defaults)
         let connectionID = UUID()
         store.save(AIConnection(id: connectionID, name: "Local", models: ["m"]))
         store.select(.api(connection: connectionID, model: "m", effort: nil))
@@ -1826,18 +1786,8 @@ struct AIProviderTests {
         expect(
             store.defaultModel == .api(connection: connectionID, model: "m", effort: nil),
             "resolution never overrides a selection the reader made")
-
-        // A removed connection falls forward to the route that is always configured.
         store.removeConnection(id: connectionID)
-        expect(
-            store.defaultModel == .appleIntelligence,
-            "a removed connection falls forward to the on-device route")
-
-        let without = AISettingsStore(defaults: defaults, isAppleIntelligenceAvailable: { false })
-        without.resolveDefaultModel()
-        expect(
-            without.defaultModel == .appleIntelligence,
-            "an unavailable model does not silently reroute a stored on-device selection")
+        expect(store.defaultModel == nil, "a removed connection leaves no default behind")
     }
 
     static func settingsPersistAndRepairSelections() {
@@ -2031,10 +1981,6 @@ struct AIProviderTests {
         expect(
             !reopened.isRouteEnabled(.api(first.id)) && reopened.isRouteEnabled(.api(second.id)),
             "a switched-off connection stays off after a restart")
-        reopened.setRoute(.appleIntelligence, enabled: false)
-        expect(
-            !reopened.isRouteEnabled(.appleIntelligence),
-            "the on-device model can be switched off like a connection")
         reopened.setRoute(.api(first.id), enabled: true)
         reopened.removeConnection(id: second.id)
         expect(

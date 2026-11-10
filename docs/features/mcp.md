@@ -86,7 +86,7 @@ not read MCP settings. `AIChatCoordinator.send` is the one place the two meet.
 - **Who runs the loop is the route's own answer, and it is the only thing that differs.**
   `AIModelCapabilities.tools` follows model support for `.api` and OpenCode, is true for Codex
   and Claude, and is false
-  for Apple Intelligence, Grok and Cursor. On an API route Tinycast is
+  for Grok and Cursor. On an API route Tinycast is
   the MCP client and `AIToolLoopProvider` runs the loop. On the two subscription routes the vendor
   CLI is the MCP client: `AIModelSelection.runsItsOwnTools` says so, and `AIChatCoordinator` hands
   the route an `AIToolServerSession` instead of wrapping it. The same servers — less an OAuth one
@@ -351,7 +351,7 @@ caught there rather than in the middle of a conversation.
   in the next; Always Allow survives a relaunch; Escape refuses only that call.
 - `@filesystem list my desktop` shows the tools glyph after the text, sends without the prefix, and
   offers only that server's tools. `@nosuch hello` is sent verbatim.
-- On Apple Intelligence, Grok or Cursor, no tool is offered and the reply streams as before.
+- On Grok or Cursor, no tool is offered and the reply streams as before.
 - On OpenCode, selected tools use Tinycast's consent dialog and show the same rows. Its built-ins
   and user-configured tools remain denied; titles and text rewrites offer no tools.
 - On Codex and on the Claude command the same question answers with the same rows, the same dialog

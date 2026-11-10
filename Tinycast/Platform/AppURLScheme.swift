@@ -1,6 +1,6 @@
 import Foundation
 
-/// This channel's own link scheme: `tinycast`, or `tinycast-dev` for Debug. Set in project.yml.
+/// This channel's own link scheme: `tinycast-sonoma`, or `tinycast-sonoma-dev` for Debug. Set in project.yml.
 enum AppURLScheme {
     static let current: String = {
         guard let scheme = Bundle.main.object(forInfoDictionaryKey: "TinycastURLScheme") as? String

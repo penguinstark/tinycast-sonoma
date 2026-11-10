@@ -42,7 +42,7 @@ Settings shortcut field; only the Settings window sets it.
   or a link opened at login before the first scan, still runs.
 - **A link that launches the app waits for `start`.** `AppCore.handleOpenURL` queues until every
   handler is wired, then runs the queue in order.
-- **The scheme is the channel's own.** Release answers `tinycast://`, Debug `tinycast-dev://`, set by
+- **The scheme is the channel's own.** Release answers `tinycast-sonoma://`, Debug `tinycast-sonoma-dev://`, set by
   `TINYCAST_URL_SCHEME` in `project.yml` and read through `AppURLScheme`. `raycast://` and
   `com.raycast:` never reach a built-in.
 - **The built-in router never touches extension types.** `DeepLinkCoordinator.handles(_:)` leaves

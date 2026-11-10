@@ -10,13 +10,13 @@ When this document and the code disagree, the code is probably right and this fi
 
 ## Posture
 
-Tinycast supports macOS 26 and later, with macOS 27 strongly preferred. Swift 6+ with complete strict
-concurrency is required. Prefer the latest Swift patterns and modern Apple APIs, following
-[`AGENTS.md`](../AGENTS.md#posture-modern-first-always).
+Tinycast Sonoma supports macOS 14 and later. Swift 6+ with complete strict concurrency is required.
+Prefer the newest Swift patterns and Apple APIs that the 14 floor still has, following
+[`AGENTS.md`](../AGENTS.md#posture-macos-14-floor).
 
-Verify API and language-feature availability against the SDK and compiler used by the build and CI.
-Use direct availability checks where macOS 27+ APIs require them to preserve macOS 26 support. Do not
-introduce compatibility layers, legacy workarounds, support below macOS 26 or speculative fallbacks.
+Verify API and language-feature availability against the macOS 14 SDK and the compiler used by the
+build and CI. Use direct availability checks before adopting anything newer than the floor. Do not
+introduce speculative fallbacks or support below macOS 14.
 Migration code lives only in `Migrations/` and is deleted after one stable release; see
 [migrations.md](migrations.md).
 

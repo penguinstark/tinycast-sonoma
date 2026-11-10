@@ -52,7 +52,6 @@ final class AppCore {
     let regionNumberFormat = RegionNumberFormatMonitor()
     let calendarStore = CalendarStore()
     let meetingClock = MeetingClock()
-    let updateChecker = UpdateCheckStore()
     let supportReminders: SupportReminderStore
     let emojiIndex = EmojiIndex()
     let frequentEmoji = FrequentEmojiStore()
@@ -70,9 +69,7 @@ final class AppCore {
     let extensions: ExtensionManager
     let chatHistory: ChatHistoryStore
     let aiChats: AIChatSurfacesState
-    let aiSettings = AISettingsStore(
-        environmentStore: .keychain,
-        isAppleIntelligenceAvailable: { AppleIntelligenceProvider.status().isAvailable })
+    let aiSettings = AISettingsStore(environmentStore: .keychain)
     let mcpSettings = MCPSettingsStore()
     let mcpOAuth = MCPOAuthManager()
     @ObservationIgnored private(set) lazy var mcp = MCPServerManager(oauth: mcpOAuth)
@@ -218,8 +215,6 @@ final class AppCore {
     @ObservationIgnored private(set) lazy var cameraCoordinator = CameraCoordinator(core: self)
     @ObservationIgnored private(set) lazy var dictionaryCoordinator = DictionaryCoordinator(
         paletteCoordinator: paletteCoordinator)
-    @ObservationIgnored private(set) lazy var updateCoordinator = UpdateCoordinator(
-        store: updateChecker, core: self)
     @ObservationIgnored private(set) lazy var supportCoordinator = SupportCoordinator(
         store: supportReminders, core: self)
     @ObservationIgnored private(set) lazy var quickActionCoordinator = QuickActionCoordinator(
@@ -352,13 +347,10 @@ final class AppCore {
                 default: break
                 }
             }
-            updateCoordinator.applyEnabled()
             calendarCoordinator.applyEnabled()
             Task { await appIndex.refresh() }
             Task { await emojiIndex.load(languages: SystemLanguages.preferred) }
             currencyRates.start()
-            updateChecker.onUpdateAvailable = { [weak self] in self?.updateCoordinator.offer($0) }
-            updateCoordinator.applyAutomaticChecking()
             supportReminders.onDue = { [weak self] in self?.supportCoordinator.presentIfDue() }
             supportReminders.start()
 
@@ -463,26 +455,8 @@ final class AppCore {
             } else if launchedByUser {
                 paletteCoordinator.showPalette(mode: .launcher)
             }
-            reportInstall(updateChecker.takeInstallReport())
         }
         openPendingURLs()
-    }
-
-    private func reportInstall(_ report: UpdateCheckStore.InstallReport?) {
-        switch report {
-        case .installed(let version):
-            showMessage(String(localized: "Updated to Tinycast \(version.description)"))
-        case .notInstalled(let version):
-            showMessage(
-                String(
-                    localized: """
-                        Tinycast \(version.description) could not be installed. \
-                        Check for updates to try again.
-                        """),
-                tone: .danger)
-        case nil:
-            break
-        }
     }
 
     private func openPendingURLs() {
@@ -627,7 +601,6 @@ final class AppCore {
         mcpOAuth.stop()
         mcp.stop()
         installedAI.stop()
-        updateCoordinator.installStagedUpdate()
         if relaunchRequested { RelaunchRunner.relaunchAfterExit(Bundle.main.bundleURL) }
     }
 
@@ -667,7 +640,6 @@ final class AppCore {
         return Task { for task in tasks { await task.value } }
     }
 
-    /// Permissive guardrails: the text transformed is the reader's own, which `.default` refuses.
     func quickActionProvider(for action: QuickAction) throws -> any AIProvider {
         quickActionSettings.repairModel(
             against: aiSettings.connections, fallback: aiSettings.defaultModel)
@@ -678,16 +650,12 @@ final class AppCore {
         }
         return try AIProviderFactory.make(
             selection: selection, settings: aiSettings, subscription: chatGPTSubscription,
-            installedAI: installedAI,
-            guardrails: .permissiveContentTransformations)
+            installedAI: installedAI)
     }
 
     // MARK: - Feature switches
 
     private func observeFeatureSwitches() {
-        track(
-            { _ = $0.automaticallyCheckForUpdates },
-            reproject: { $0.updateCoordinator.applyAutomaticChecking() })
         track(
             {
                 _ = $0.windowManagementEnabled
@@ -952,17 +920,14 @@ final class AppCore {
 
     // MARK: - Interruption
 
-    var currentActivity: UpdateActivity {
-        UpdateActivity(
-            isExpandingSnippet: textInjector.isDelivering,
-            isRunningExtension: extensions.running != nil,
-            isUninstalling: uninstall.isTrashing,
-            isRecordingHotKey: hotKeys.recordingAction != nil,
-            isShowingDialog: isShowingDialog,
-            isPaletteVisible: paletteCoordinator.isVisible)
+    var canInterruptUser: Bool {
+        !textInjector.isDelivering
+            && extensions.running == nil
+            && !uninstall.isTrashing
+            && hotKeys.recordingAction == nil
+            && !isShowingDialog
+            && !paletteCoordinator.isVisible
     }
-
-    var canInterruptUser: Bool { UpdateReadiness.evaluate(currentActivity) == nil }
 
     // MARK: - Dialogs, routed here so `dialogs` stays the single owner
 

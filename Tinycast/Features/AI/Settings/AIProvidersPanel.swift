@@ -2,13 +2,11 @@ import AppKit
 import SwiftUI
 
 enum AIProviderRoute: Hashable {
-    case appleIntelligence
     case installed(InstalledAIKind)
     case api(UUID)
 
     var source: AIModelSource {
         switch self {
-        case .appleIntelligence: return .appleIntelligence
         case .installed(let kind): return kind.source
         case .api(let id): return .api(id)
         }
@@ -33,7 +31,6 @@ enum AIProviderTab: String, CaseIterable, Identifiable {
 
     static func tabs(for route: AIProviderRoute) -> [AIProviderTab] {
         switch route {
-        case .appleIntelligence: return [.overview]
         case .installed: return [.overview, .models, .advanced]
         case .api: return [.overview, .models]
         }
@@ -129,9 +126,6 @@ struct AIProvidersPanel: View {
     private var list: some View {
         VStack(spacing: 0) {
             List(selection: $selection) {
-                Section("On This Mac") {
-                    listRow(.appleIntelligence)
-                }
                 Section(String(localized: "ai-installed-tools", defaultValue: "Installed")) {
                     ForEach(InstalledAIKind.allCases) { listRow(.installed($0)) }
                 }
@@ -206,8 +200,6 @@ struct AIProvidersPanel: View {
     @ViewBuilder
     private var detail: some View {
         switch selection {
-        case .appleIntelligence?:
-            detailForm(.appleIntelligence) { _ in appleIntelligenceSections }
         case .installed(let kind)?:
             detailForm(.installed(kind)) { installedSections(kind, tab: $0) }
         case .api(let id)?:
@@ -271,43 +263,8 @@ struct AIProvidersPanel: View {
                 if let connection = settings.connection(id: id) {
                     Button("Edit…") { edit(connection) }
                 }
-            case .appleIntelligence:
-                EmptyView()
             }
             routeToggle(route)
-        }
-    }
-
-    // MARK: On this Mac
-
-    @ViewBuilder
-    private var appleIntelligenceSections: some View {
-        let available = settings.isAppleIntelligenceAvailable()
-        if !settings.isRouteEnabled(.appleIntelligence) { turnedOffSection() }
-        Section {
-            LabeledContent {
-                if available {
-                    Text("Ready")
-                        .foregroundStyle(.secondary)
-                } else if AppleIntelligenceProvider.status().isSupported {
-                    Button("Open System Settings…") {
-                        NSWorkspace.shared.open(AppleIntelligence.settingsURL)
-                    }
-                }
-            } label: {
-                Text(AppleIntelligence.title)
-                Text(
-                    available
-                        ? String(localized: "Runs on this Mac. Nothing leaves it.")
-                        : AppleIntelligenceProvider.status().message
-                            ?? String(localized: "Not available on this Mac."))
-            }
-        } header: {
-            Text("Status")
-        } footer: {
-            Text("Choose the default model on the AI pane.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
         }
     }
 
@@ -674,7 +631,6 @@ struct AIProvidersPanel: View {
 
     private func title(for route: AIProviderRoute) -> String {
         switch route {
-        case .appleIntelligence: return AppleIntelligence.title
         case .installed(let kind): return kind.title
         case .api(let id):
             return settings.connection(id: id)?.title ?? String(localized: "API Connection")
@@ -683,7 +639,6 @@ struct AIProvidersPanel: View {
 
     private func kindCaption(for route: AIProviderRoute) -> String {
         switch route {
-        case .appleIntelligence: return String(localized: "On this Mac · No account needed")
         case .installed(let kind): return String(localized: "Installed command · \(kind.command)")
         case .api(let id):
             let provider = settings.connection(id: id)?.provider.title ?? ""
@@ -694,10 +649,6 @@ struct AIProvidersPanel: View {
     /// The one line a reader scans the list for: is it usable, and if not, why.
     private func caption(for route: AIProviderRoute) -> String {
         switch route {
-        case .appleIntelligence:
-            guard settings.isRouteEnabled(.appleIntelligence) else { return String(localized: "Off") }
-            return settings.isAppleIntelligenceAvailable()
-                ? String(localized: "Ready · Runs on this Mac") : String(localized: "Unavailable")
         case .installed(let kind):
             guard settings.enabledInstalledProviders.contains(kind) else {
                 return String(localized: "Off")
@@ -739,7 +690,6 @@ struct AIProvidersPanel: View {
 
     private func icon(for route: AIProviderRoute) -> PopoverMenuIcon {
         switch route {
-        case .appleIntelligence: return AIModelOption.appleIntelligenceIcon
         case .installed(.codex): return .asset(AIBrand.openAI.assetName)
         case .installed(.claude): return .asset(AIBrand.claude.assetName)
         case .installed(.grok): return .asset(AIBrand.grok.assetName)
@@ -763,7 +713,6 @@ struct AIProvidersPanel: View {
     /// Opens on whichever route the default model uses, since that is the one most often checked.
     private var initialSelection: AIProviderRoute {
         switch settings.defaultModel?.source {
-        case .appleIntelligence?: return .appleIntelligence
         case .api(let id)?: return .api(id)
         case let source?:
             return source.installedKind.map(AIProviderRoute.installed) ?? .installed(.codex)
@@ -777,18 +726,14 @@ struct AIProvidersPanel: View {
     }
 
     private func routeToggle(_ route: AIProviderRoute) -> some View {
-        // Off for display only: the stored choice belongs to the reader, not to this Mac.
-        let unsupported =
-            route == .appleIntelligence && !AppleIntelligenceProvider.status().isSupported
-        return Toggle(
+        Toggle(
             "Enable \(title(for: route))",
             isOn: Binding(
-                get: { !unsupported && settings.isRouteEnabled(route.source) },
+                get: { settings.isRouteEnabled(route.source) },
                 set: { settings.setRoute(route.source, enabled: $0) })
         )
         .labelsHidden()
         .toggleStyle(.switch)
-        .disabled(unsupported)
     }
 
     private var removalPresented: Binding<Bool> {

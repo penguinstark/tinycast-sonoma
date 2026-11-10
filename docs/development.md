@@ -5,8 +5,8 @@ verifying a change is [testing.md](testing.md).
 
 ## Requirements
 
-- macOS 26 or later (Liquid Glass).
-- Xcode 27 — it provides the SwiftUI macro plugin and the SDK.
+- macOS 14 or later (Sonoma).
+- Xcode 26 — it provides the SwiftUI macro plugin and the SDK.
 - [XcodeGen](https://github.com/yonaskolb/XcodeGen), and for linting:
   `brew install swiftlint`.
 - Node, for the generators and the local test stub servers `run-tests.sh` drives. It is the only
@@ -45,20 +45,21 @@ The app target builds and embeds `ClipboardTextHelper` under `Contents/Helpers`,
 Build the app scheme to include it; copying only the main executable omits OCR support. The helper's
 executable name stays fixed even when release builds override the app's product name for a channel.
 
-Dictation similarly embeds its Swift/Core ML helper, named `Tinycast Dev Dictation` in Debug and
-`Tinycast Dictation` in Release, in an accessory `.app` bundle without a bundled icon. Model weights
+Dictation similarly embeds its Swift/Core ML helper, named `Tinycast Sonoma Dev Dictation` in Debug
+and `Tinycast Sonoma Dictation` in Release, in an accessory `.app` bundle without a bundled icon. Model weights
 download on demand; none are app resources.
 
 ### The dev channel
 
-Debug builds are a separate channel: **`Tinycast Dev.app`**, bundle id `com.tinycast.app.dev`. Every
+Debug builds are a separate channel: **`Tinycast Sonoma Dev.app`**, bundle id
+`com.tinycast.app.sonoma.dev`. Every
 persisted thing is keyed by bundle id — `~/Library/Preferences/<id>.plist` (settings and hotkey
 bindings), `~/Library/Application Support/<id>/` (the onboarding marker, Notes, snippets, quicklinks,
 clipboard history, calculator history, launch ranking and frequent emoji; Notes and snippets unless
 a folder is chosen),
-`~/Library/Caches/<id>/` (exchange rates, the update check, staged downloads), the opt-in
-`~/.config/tinycast-dev/settings.json` (`tinycast` on stable), the `tinycast-dev://` link scheme
-(`tinycast://` on stable), the `SMAppService`
+`~/Library/Caches/<id>/` (exchange rates), the opt-in
+`~/.config/tinycast-sonoma-dev/settings.json` (`tinycast-sonoma` on release), the
+`tinycast-sonoma-dev://` link scheme (`tinycast-sonoma://` on release), the `SMAppService`
 login item, and the Accessibility / Input Monitoring (TCC) grants — so a local build can neither read
 nor clobber an installed app's state, and both run side by side.
 
@@ -94,7 +95,7 @@ xcodebuild -project Tinycast.xcodeproj -scheme Tinycast -configuration Debug \
 
 Both files are git-ignored because they embed absolute paths, and `sourcekit-lsp` looks for
 `buildServer.json` at the workspace root by name, so it cannot live in a subfolder. After this the
-**Build Tinycast.app (debug)** task (⌘⇧B) and **F5** re-run the script on every build, so new and
+**Build Tinycast Sonoma.app (debug)** task (⌘⇧B) and **F5** re-run the script on every build, so new and
 renamed files keep resolving.
 
 **Do not run `xcode-build-server config`.** It writes `kind: xcode`, and in that mode the server ignores

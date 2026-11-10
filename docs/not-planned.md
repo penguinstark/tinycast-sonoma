@@ -23,9 +23,6 @@ launchers. We accept that to keep the app simple.
 
 ## Mac, languages and updates
 
-- **Older macOS (Sonoma, Sequoia).** Tinycast needs macOS 26 or later. Support for old versions made
-  the app slower on new Macs. Old builds stay in past releases. The last Sequoia build is 0.9.7.
-  ([#1611](https://github.com/abue-ammar/tinycast/issues/1611), [#517](https://github.com/abue-ammar/tinycast/issues/517))
 - **Windows or Linux.** Tinycast is Mac only. It uses Apple tools that don't run on other systems.
   ([#637](https://github.com/abue-ammar/tinycast/issues/637), [#720](https://github.com/abue-ammar/tinycast/issues/720))
 - **More app languages.** Tinycast comes in English plus eight languages. That list is final for now. We may add one more
@@ -33,8 +30,6 @@ launchers. We accept that to keep the app simple.
   ([#148](https://github.com/abue-ammar/tinycast/issues/148))
 - **A beta switch in the regular app.** Stable and beta stay separate until at least version 1.0.
   ([#1411](https://github.com/abue-ammar/tinycast/issues/1411))
-- **Updates on accounts without admin rights.** The built-in updater must write to the Applications
-  folder. **Instead:** install and update with Homebrew. ([#1340](https://github.com/abue-ammar/tinycast/issues/1340))
 - **Import from Alfred, or from old Raycast exports.** Import works with Raycast v2 exports only.
   ([#624](https://github.com/abue-ammar/tinycast/issues/624), [#1373](https://github.com/abue-ammar/tinycast/issues/1373))
 
@@ -197,7 +192,6 @@ Tinycast is an all-in-one launcher, not a full window manager. Its window tools 
 - **A timer, focus sessions, a flight tracker or confetti.** ([#1179](https://github.com/abue-ammar/tinycast/issues/1179), [#1025](https://github.com/abue-ammar/tinycast/issues/1025), [#1007](https://github.com/abue-ammar/tinycast/issues/1007), [#992](https://github.com/abue-ammar/tinycast/issues/992))
 - **Brightness and volume for external monitors.** ([#1193](https://github.com/abue-ammar/tinycast/issues/1193))
 - **Fix accidental capitals as you type.** ([#1387](https://github.com/abue-ammar/tinycast/issues/1387))
-- **Type into Translate with auto direction.** ([#1032](https://github.com/abue-ammar/tinycast/issues/1032))
 - **The camera inside the palette.** It stays in its own window. ([#1578](https://github.com/abue-ammar/tinycast/issues/1578))
 - **Spelling suggestions in Define Word.** ([#1551](https://github.com/abue-ammar/tinycast/issues/1551))
 - **File Search extras:** Finder tags, folder search inside Finder or Open dialogs, Tab into a

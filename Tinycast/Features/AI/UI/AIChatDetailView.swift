@@ -202,7 +202,7 @@ private struct AIChatComposer: View {
         let canChangePreset = chat.session.messages.isEmpty && !chat.isStreaming
         return HStack(spacing: Theme.Spacing.xxs) {
             AIAddMenu(chat: chat, coordinator: coordinator, settings: settings, offersSearch: searches)
-            if coordinator.offersPresets(for: chat), stamp != nil || canChangePreset {
+            if stamp != nil || canChangePreset {
                 AIPresetPicker(
                     chat: chat, stamp: stamp, canChange: canChangePreset, coordinator: coordinator
                 )

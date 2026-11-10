@@ -1,7 +1,7 @@
-# Contributing to Tinycast
+# Contributing to Tinycast Sonoma
 
-Check existing [issues](https://github.com/abue-ammar/tinycast/issues) and
-[pull requests](https://github.com/abue-ammar/tinycast/pulls) first.
+Check existing [issues](https://github.com/penguinstark/tinycast-sonoma/issues) and
+[pull requests](https://github.com/penguinstark/tinycast-sonoma/pulls) first.
 
 > **Don't hurry your code. Make sure it works well and is well designed. Don't worry about timing.**
 
@@ -18,9 +18,9 @@ Check existing [issues](https://github.com/abue-ammar/tinycast/issues) and
 
 ## Setup
 
-- macOS 26+, Xcode 26. Do the one-time signing setup
+- macOS 14+, Xcode 26. Do the one-time signing setup
   ([`docs/signing.md`](docs/signing.md) §1).
-- `open Tinycast.xcodeproj` → ⌘R. Debug builds are their own channel (`Tinycast Dev.app`).
+- `open Tinycast.xcodeproj` → ⌘R. Debug builds are their own channel (`Tinycast Sonoma Dev.app`).
 - After editing `project.yml`: `xcodegen generate`, commit the result. No SwiftPM.
 - Details: [`docs/development.md`](docs/development.md). Architecture:
   [`docs/architecture.md`](docs/architecture.md). Start at [`docs/`](docs/README.md).
@@ -28,7 +28,7 @@ Check existing [issues](https://github.com/abue-ammar/tinycast/issues) and
 ## Before submitting
 
 - **A linked issue marked `approved`.** Put `Closes #<number>` in the PR description. Anyone may
-  open the PR, not only the issue's author. Docs-only changes (`*.md`, `docs/`, `website/`) need no
+  open the PR, not only the issue's author. Docs-only changes (`*.md`, `docs/`) need no
   approved issue. A PR with no linked issue gets a reminder and is closed automatically 24 hours
   later.
 - The whole bar in [`docs/testing.md`](docs/testing.md#definition-of-done) passes — harnesses, lint,

@@ -63,19 +63,6 @@ struct AISettingsView: View {
 
     private var defaultModelSection: some View {
         Section {
-            // A Mac with nothing configured is the one that needs telling its free route is off.
-            if let status = appleIntelligenceStatus, let reason = status.message {
-                LabeledContent {
-                    if status.isSupported {
-                        Button("Open System Settings…") {
-                            NSWorkspace.shared.open(AppleIntelligence.settingsURL)
-                        }
-                    }
-                } label: {
-                    Label(reason, systemImage: "apple.intelligence")
-                        .foregroundStyle(.secondary)
-                }
-            }
             AIModelSelectionRows(
                 selection: settings.defaultModel,
                 select: { $0.map(settings.select) },
@@ -96,16 +83,9 @@ struct AISettingsView: View {
     }
 
     private var defaultModelFooter: String {
-        if settings.defaultModel?.isOnDevice == true {
-            return String(localized: "Apple Intelligence runs on this Mac. Nothing leaves it.")
-        }
-        return settings.defaultModel == nil
-            ? String(localized: "Turn on Apple Intelligence, or add a provider above.")
+        settings.defaultModel == nil
+            ? String(localized: "Add a provider above.")
             : String(localized: "Only the selected provider is contacted.")
-    }
-
-    private var appleIntelligenceStatus: AppleIntelligenceStatus? {
-        settings.isAppleIntelligenceAvailable() ? nil : AppleIntelligenceProvider.status()
     }
 
     private var providerSummary: String {

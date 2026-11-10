@@ -32,7 +32,6 @@ enum SettingsFileSchema {
             return shortcuts.binding(
                 for: key, action: .togglePalette, name: String(localized: "App Launcher"))
         case .showInMenuBar: return bind(settings, \.showInMenuBar)
-        case .automaticallyCheckForUpdates: return bind(settings, \.automaticallyCheckForUpdates)
         case .popToRootTimeout: return bind(settings, \.popToRootTimeout)
         case .escapeKeyBehavior: return bind(settings, \.escapeKeyBehavior)
         case .autoSwitchInputSource: return bind(settings, \.autoSwitchInputSourceID)
@@ -85,7 +84,6 @@ enum SettingsFileSchema {
         case .aiNewChatAfter: return bind(ai, \.newChatAfter)
         case .aiToolRounds: return bind(ai, \.toolRounds)
         case .aiCommands: return launcher.commandsBinding(for: key, owner: .ai)
-        case .quickActionLanguage: return bind(quickActions, \.settings.targetLanguage)
         case .quickActionCommands: return launcher.commandsBinding(for: key, owner: .quickActions)
         case .fileSearchEnabled: return bind(settings, \.fileSearchEnabled)
         case .fileSearchScopes: return bind(settings, \.fileSearchScopes)

@@ -54,7 +54,7 @@ final class AISettingsStore {
     private(set) var shownModels: [String: [String]] {
         didSet { defaults.set(shownModels, forKey: AppSettingsKey.aiShownModels.rawValue) }
     }
-    /// The on-device model and API connections switched off without being removed.
+    /// The API connections switched off without being removed.
     private(set) var disabledRoutes: Set<String> {
         didSet {
             defaults.set(disabledRoutes.sorted(), forKey: AppSettingsKey.aiDisabledRoutes.rawValue)
@@ -78,18 +78,14 @@ final class AISettingsStore {
     /// Bumped by every edit to a tool's launch, a changed value included, which no name shows.
     private(set) var launchRevisions: [InstalledAIKind: Int] = [:]
 
-    /// Asked each time: the model lands mid-session, and a flag read at launch would never notice.
-    @ObservationIgnored let isAppleIntelligenceAvailable: @Sendable () -> Bool
     @ObservationIgnored private let environmentStore: InstalledAIEnvironmentStore
 
     init(
         defaults: UserDefaults = .standard,
-        environmentStore: InstalledAIEnvironmentStore = .none,
-        isAppleIntelligenceAvailable: @escaping @Sendable () -> Bool = { false }
+        environmentStore: InstalledAIEnvironmentStore = .none
     ) {
         self.defaults = defaults
         self.environmentStore = environmentStore
-        self.isAppleIntelligenceAvailable = isAppleIntelligenceAvailable
         installedOverrides = Self.decodeInstalledOverrides(
             defaults.data(forKey: AppSettingsKey.aiInstalledOverrides.rawValue))
         connections = Self.decodeConnections(
@@ -241,7 +237,7 @@ final class AISettingsStore {
         }
     }
 
-    /// Nothing chosen yet takes the route that needs no account, leaving a real stored selection.
+    /// Nothing chosen yet takes the first enabled connection, leaving a real stored selection.
     func resolveDefaultModel() {
         guard defaultModel == nil, let selection = firstAvailableSelection() else { return }
         defaultModel = selection
@@ -351,11 +347,7 @@ final class AISettingsStore {
             environment: values.filter { names.contains($0.key) })
     }
 
-    /// The on-device model leads: free, private, always configured, so never a surprising landing.
     private func firstAvailableSelection() -> AIModelSelection? {
-        if isAppleIntelligenceAvailable(), isRouteEnabled(.appleIntelligence) {
-            return .appleIntelligence
-        }
         for connection in connections where isRouteEnabled(.api(connection.id)) {
             if let model = connection.models.first {
                 return .api(

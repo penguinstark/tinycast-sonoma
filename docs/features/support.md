@@ -2,8 +2,7 @@
 
 One window, one checkout link, and a checkbox deciding whether it may ever reopen itself. Every other
 surface — the website's hero and footer, the docs sidebar, the README badge — links to the same URL,
-so `SupportCoordinator.checkout` is the only place the app's destination is written down. The website
-hero shares the checkout page's brief offer copy from `website/src/data/support.ts`.
+so `SupportCoordinator.checkout` is the only place the app's destination is written down.
 
 ## Invariants
 

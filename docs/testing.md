@@ -25,13 +25,6 @@ end of this file is the sixth, judged by what you touched.
 ./Scripts/run-tests.sh calc-test    # just one, while iterating
 ```
 
-`apple-intelligence-test` runs deterministic checks by default. Its real model generation is opt-in:
-
-```sh
-TINYCAST_TEST_APPLE_INTELLIGENCE=1 ./Scripts/run-tests.sh apple-intelligence-test
-```
-
-The opt-in check still skips with a reason if the Mac cannot run the on-device model.
 
 Two runtime areas also have standalone checks:
 
@@ -186,12 +179,9 @@ If a change touches anything in the right column, the harness on the left is man
 | `window-file-test` | `WindowManagement/Model/WindowManagementFileFormat.swift` — command shortcuts, custom sizes, layouts and rooms as settings.json spells them, hand edits and bad records |
 | `launcher-settings-file-test` | Launcher settings application — invalid records, partial edits, deferred bundles, shortcut moves and records outside search scopes; isolated preferences and in-memory scan/Carbon effects |
 | `backup-archive-test` | all of `Backup/Model/`, plus `Backup/Service/BackupStaging.swift` |
-| `updates-test` | `Updates/Model/` — version precedence, channel filtering, install route, readiness |
-| `update-check-test` | `UpdateCheckStore` — stopping, in-flight cancellation, cached offer suppression, restart and independent manual checking |
 | `support-test` | `Support/Model/` — when the support reminder comes due, and a clock moved backwards |
 | `ai-provider-test` | `AI/Model/` and `AISettingsStore` — instruction composition, provider requests and streams, route settings, protocol framing, CLI launch encodings and queued Codex writes across cancellation, timeout and Stop |
 | `opencode-mcp-test` | OpenCode's per-turn MCP bridge and installed CLI launch, authentication, scoped catalog, consent dispatch, serial calls, result budgets and cancellation |
-| `apple-intelligence-test` | On-device status, snapshot deltas, transcript assembly and error mapping; real generation is opt-in |
 | `syntax-highlight-test` | `AI/Model/SyntaxGrammar.swift`, `SyntaxHighlighter.swift`, `SyntaxStructuredLexers.swift` — every grammar's tokens, language aliases, the size limit and streaming prefixes |
 | `mcp-test` | `MCP/Model/` and `MCPSettingsStore` — JSON-RPC framing, handles, tool names, output flattening, trust, `@server` addressing, the shape a vendor CLI is handed, and which servers Tinycast leaves to that CLI |
 | `mcp-stdio-test` | `MCP/Service/` against a stub server — handshake, listing, calling, and every way one can go away |
@@ -421,7 +411,7 @@ There is no UI test suite, so this is it. Run the core sweep for any change that
 run the scoped section for whatever feature you touched. Budget about five minutes plus three per
 section.
 
-Run against the **Debug channel** (`Tinycast Dev.app`, `com.tinycast.app.dev`). It has its own prefs,
+Run against the **Debug channel** (`Tinycast Sonoma Dev.app`, `com.tinycast.app.sonoma.dev`). It has its own prefs,
 caches, TCC grants and login item, so this cannot disturb an installed copy.
 
 ### Core
@@ -562,7 +552,7 @@ caches, TCC grants and login item, so this cannot disturb an installed copy.
   input-source switching on, a short press switches sources only while Caps Lock is off
 - Right Command as Hyper with Left Command held keeps the chord; Left Shift as Hyper with Include
   Shift off sends ⌃⌥⇧⌘K when Right Shift is held with K
-- Run Tinycast Dev next to Tinycast: the second reads Blocked and names the first; quitting the
+- Run Tinycast Sonoma Dev next to Tinycast: the second reads Blocked and names the first; quitting the
   first hands the Hyper Key over without a relaunch
 - Revoke Accessibility while Hyper is live: the key goes back to normal. Grant it again: Hyper
   returns within a couple of seconds without a relaunch
@@ -901,11 +891,11 @@ caches, TCC grants and login item, so this cannot disturb an installed copy.
 
 ### Deeplinks
 
-Debug answers `tinycast-dev://`; use that scheme for every link below.
+Debug answers `tinycast-sonoma-dev://`; use that scheme for every link below.
 
 - ⇧⌘C on a command, window command, system action, quicklink and extension row says Deeplink
   copied; ⌘K lists Copy Deeplink there, and not on an application or a System Settings pane. A
-  built-in row's link starts `tinycast-dev://`, and so does an extension row's
+  built-in row's link starts `tinycast-sonoma-dev://`, and so does an extension row's
 - Type into a quicklink's and a custom command's argument fields, then ⇧⌘C: the link carries the
   values, and opening it fills the same fields
 - Right-click a shortcut field in Settings (a command, a quicklink, an extension command): Copy
@@ -948,9 +938,9 @@ Debug answers `tinycast-dev://`; use that scheme for every link below.
   window to 800 pt by 60%; `"width":"0"` reports the link
 - `?arguments=nope` on any link: a HUD says it can't open it, and nothing runs
 - `settings/permissions` opens Settings on Permissions; `settings/nope` shows the HUD
-- A quicklink whose link is `tinycast-dev://window-command/left-half` moves the window without
+- A quicklink whose link is `tinycast-sonoma-dev://window-command/left-half` moves the window without
   asking. One whose link is another quicklink's says it can't, and nothing loops
-- `raycast://extensions/<owner>/<ext>/<cmd>` and `tinycast-dev://extensions/<owner>/<ext>/<cmd>`
+- `raycast://extensions/<owner>/<ext>/<cmd>` and `tinycast-sonoma-dev://extensions/<owner>/<ext>/<cmd>`
   still run an installed extension command; `?context=` with a JSON object reaches it as
   `props.launchContext`
 
@@ -973,10 +963,6 @@ Debug answers `tinycast-dev://`; use that scheme for every link below.
 
 ### Settings and backup
 
-- General → Automatically check for updates defaults on; turn it off and relaunch: it stays off,
-  no background check or update offer occurs, and Check for Updates still works. Re-enable it:
-  checks resume. Settings search for "updates" reveals the toggle; settings.json edits and a backup
-  round trip preserve the choice.
 - Every pane renders and the sidebar switches without flicker
 - A feature switch takes effect in the launcher immediately; every setting survives relaunch
 - Export produces a `.tinycast`; import applies it and reports a per-category summary
@@ -984,7 +970,7 @@ Debug answers `tinycast-dev://`; use that scheme for every link below.
 - Untick a category on **import** and confirm it did not arrive, while the ticked ones did
 - An image clip round-trips and still renders; the archive can then be deleted without breaking it
 - A file whose `manifest.json` `format` was hand-edited is refused **with a message naming it**
-- Cancelling the save panel leaves nothing in `~/Library/Caches/com.tinycast.app.dev/backup-staging/`
+- Cancelling the save panel leaves nothing in `~/Library/Caches/com.tinycast.app.sonoma.dev/backup-staging/`
 - **`snippetsEnabled` is not in the exported file**, and importing does not enable snippets
 - Nothing in the extracted tree names a Keychain item, an extension, or an AI conversation
 
@@ -994,11 +980,11 @@ The realistic storage failure is a store that crashes on an absent file rather t
 Wipe the Dev channel and check that path directly:
 
 ```sh
-rm -rf ~/Library/Caches/com.tinycast.app.dev
-rm -rf "$HOME/Library/Application Support/com.tinycast.app.dev"
-rm -rf ~/.config/tinycast-dev
-defaults delete com.tinycast.app.dev 2>/dev/null || true
-tccutil reset Accessibility com.tinycast.app.dev 2>/dev/null || true
+rm -rf ~/Library/Caches/com.tinycast.app.sonoma.dev
+rm -rf "$HOME/Library/Application Support/com.tinycast.app.sonoma.dev"
+rm -rf ~/.config/tinycast-sonoma-dev
+defaults delete com.tinycast.app.sonoma.dev 2>/dev/null || true
+tccutil reset Accessibility com.tinycast.app.sonoma.dev 2>/dev/null || true
 ```
 
 - Launches with every store directory absent — no crash, no hang; onboarding runs
@@ -1012,5 +998,5 @@ tccutil reset Accessibility com.tinycast.app.dev 2>/dev/null || true
 - **Every setting shows its intended default.** Walk the panes: this is what catches a broken
   absence-versus-`false` read
 - Quit and relaunch: everything created above persisted
-- Nothing was written outside `com.tinycast.app.dev/`. Channel isolation is not negotiable — a Dev build
+- Nothing was written outside `com.tinycast.app.sonoma.dev/`. Channel isolation is not negotiable — a Dev build
   writing into the stable app's directory is a defect even though the data is disposable

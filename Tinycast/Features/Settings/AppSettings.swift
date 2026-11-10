@@ -166,13 +166,6 @@ final class AppSettings {
         didSet { defaults.set(showInMenuBar, forKey: Key.showInMenuBar.rawValue) }
     }
 
-    var automaticallyCheckForUpdates: Bool {
-        didSet {
-            defaults.set(
-                automaticallyCheckForUpdates, forKey: Key.automaticallyCheckForUpdates.rawValue)
-        }
-    }
-
     /// The physical key remapped to the Hyper chord; `HyperKeyManager` reacts via its observer.
     var hyperKey: HyperKeyPhysicalKey {
         didSet { defaults.set(hyperKey.rawValue, forKey: Key.hyperKey.rawValue) }
@@ -712,9 +705,6 @@ final class AppSettings {
         showInMenuBar =
             defaults.object(forKey: Key.showInMenuBar.rawValue) == nil
             || defaults.bool(forKey: Key.showInMenuBar.rawValue)
-        automaticallyCheckForUpdates =
-            defaults.object(forKey: Key.automaticallyCheckForUpdates.rawValue) == nil
-            || defaults.bool(forKey: Key.automaticallyCheckForUpdates.rawValue)
         hyperKey =
             defaults.string(forKey: Key.hyperKey.rawValue).flatMap(HyperKeyPhysicalKey.init)
             ?? .none

@@ -119,7 +119,7 @@ struct ChatPresetEditorPanel: View {
                             .allowsHitTesting(false)
                     }
                 }
-            Text("Sent even when the system prompt is off, but never to Apple Intelligence.")
+            Text("Sent even when the system prompt is off.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -133,7 +133,6 @@ struct ChatPresetEditorPanel: View {
                 AIModelSelectionRows(
                     selection: model,
                     inheritedTitle: String(localized: "Same as AI Chat"),
-                    excludesOnDevice: true,
                     select: { model = $0 },
                     modelLabel: { Text("Model") },
                     effortLabel: { Text("Reasoning effort") })

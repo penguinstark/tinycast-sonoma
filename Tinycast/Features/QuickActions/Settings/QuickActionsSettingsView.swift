@@ -48,7 +48,6 @@ struct QuickActionsSettingsView: View {
             Group {
                 actionsSection
                 modelSection
-                languageSection
             }
             .settingsEnabled(appSettings.quickActionsEnabled)
         }
@@ -71,11 +70,8 @@ struct QuickActionsSettingsView: View {
                 model: request.action.flatMap { store.modelOverride(for: .custom($0)) })
         }
         .onAppear {
-            core.quickActionCoordinator.loadLanguages()
             store.repairModel(against: aiSettings.connections, fallback: aiSettings.defaultModel)
-            store.resolveModel(
-                appleIntelligenceAvailable: aiSettings.isAppleIntelligenceAvailable(),
-                fallback: aiSettings.defaultModel)
+            store.resolveModel(fallback: aiSettings.defaultModel)
             core.applyInstalledAILifecycle()
         }
         .onChange(of: appSettings.aiEnabled) { repairInstalledModel() }
@@ -125,9 +121,7 @@ struct QuickActionsSettingsView: View {
             Image(systemName: action.symbol)
                 .frame(width: Theme.Size.settingsRowIcon)
         } trailing: {
-            if !action.usesTranslationFramework {
-                editButton(title: action.title) { editingAction = action }
-            }
+            editButton(title: action.title) { editingAction = action }
             if let entry { AliasField(entry: entry) }
             ShortcutRecorder(action: .command(CommandID(action)), isQuiet: true)
             resultPicker(title: action.title, selection: previewBinding(action))
@@ -185,25 +179,6 @@ struct QuickActionsSettingsView: View {
         }
     }
 
-    private var languageSection: some View {
-        Section {
-            Picker(selection: languageBinding) {
-                Text("Same as this Mac").tag("")
-                ForEach(core.quickActionCoordinator.offeredLanguages, id: \.minimalIdentifier) {
-                    Text(TextTranslator.displayName(of: $0)).tag($0.minimalIdentifier)
-                }
-            } label: {
-                SettingsRowTitle(.quickActionsTranslate, "Translate to")
-            }
-        } header: {
-            SettingsSectionHeader(.quickActionsTranslate)
-        } footer: {
-            Text("Apple's translator, on this Mac. A language downloads on first use.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-    }
-
     private func subtitle(for action: QuickAction) -> String? {
         let details = [
             action.alwaysPreviews ? String(localized: "Always shown in a panel") : nil,
@@ -240,12 +215,6 @@ struct QuickActionsSettingsView: View {
         Binding(
             get: { visibility.isItemVisible(entry) },
             set: { visibility.setItemVisible($0, for: entry) })
-    }
-
-    private var languageBinding: Binding<String> {
-        Binding(
-            get: { store.settings.targetLanguage },
-            set: { store.settings.targetLanguage = $0 })
     }
 
     private var modelChoices: [AIModelOption] {

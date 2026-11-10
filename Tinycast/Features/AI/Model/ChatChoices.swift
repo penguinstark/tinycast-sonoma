@@ -25,7 +25,7 @@ enum ChatChoices {
         return (droppingDanglingFence(prose), Array(choices.prefix(maxCount)))
     }
 
-    /// The on-device model's form: a `choices` line, then list items to the end, fenced or not.
+    /// A `choices` line, then list items to the end, fenced or not.
     private static func labelled(_ text: String) -> (text: String, choices: [String])? {
         guard mentionsChoices(text) else { return nil }
         var lines = text.components(separatedBy: "\n")

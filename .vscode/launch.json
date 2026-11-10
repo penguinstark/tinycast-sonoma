@@ -10,7 +10,7 @@
       "name": "Run Tinycast Dev (bundled .app)",
       "program": "${workspaceFolder}/build/DerivedData/Build/Products/Debug/Tinycast Dev.app/Contents/MacOS/Tinycast Dev",
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "Build Tinycast.app (debug)"
+      "preLaunchTask": "Build Tinycast Sonoma.app (debug)"
     }
   ]
 }

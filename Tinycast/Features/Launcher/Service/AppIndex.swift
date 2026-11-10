@@ -450,7 +450,7 @@ final class AppIndex {
         publishEntries()
     }
 
-    /// Replaces the custom Quick Action slice, which shares its section with the shipped four.
+    /// Replaces the custom Quick Action slice, which shares its section with the shipped three.
     func setCustomQuickActions(_ actions: [CustomQuickAction]) {
         let entries = actions.sorted(by: CustomQuickAction.precedes).map(AppEntry.init)
         guard entries != customQuickActionEntries else { return }

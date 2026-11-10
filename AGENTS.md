@@ -6,15 +6,15 @@ and an emoji picker. It also **runs Raycast extensions** natively, in JavaScript
 SwiftUI + AppKit, running as an accessory with no Dock icon (`LSUIElement`). Zero third-party
 dependencies.
 
-## Posture: modern-first, always
+## Posture: macOS 14 floor
 
-**Tinycast supports macOS 26 and later, with macOS 27 strongly preferred.** Swift 6+ with complete
-strict concurrency is required. Prefer the latest Swift patterns and modern Apple APIs.
+**Tinycast Sonoma supports macOS 14 and later.** Swift 6+ with complete strict concurrency is
+required. Prefer APIs available on macOS 14, and verify availability before adopting a newer one.
 
-Prefer current APIs and language features:
+Prefer current APIs and language features that the 14 floor allows:
 
-- **Prefer the modern Apple API**, always. Observation over `ObservableObject`. `SMAppService` over
-  login-item shims.
+- **Prefer the modern API the floor still has.** Observation over `ObservableObject`. `SMAppService`
+  over login-item shims.
 - **Prefer synchronous code.** Keep short UI and state operations synchronous on `@MainActor`.
   Introduce concurrency only for genuinely asynchronous operations or blocking work that must leave
   the main actor. Shared state alone does not justify `async`, a `Task`, or an actor. Preserve
@@ -24,10 +24,9 @@ Prefer current APIs and language features:
 - **Migrate, never wrap.** Adopt modern replacements directly and delete obsolete call sites. Do not
   keep wrappers that only preserve an old spelling.
 - **A deprecated API is a defect**, not a warning to live with.
-- **Verify API and language-feature availability** against the SDK and compiler used by the build
-  and CI. Use direct availability checks where macOS 27+ APIs require them to preserve macOS 26 support.
-- **No compatibility layers, legacy workarounds or obsolete patterns.** No support below macOS 26 or
-  speculative fallbacks. Keep the implementation direct. Migration code lives only in
+- **Verify API and language-feature availability** against the macOS 14 SDK and the compiler used by
+  the build and CI. Do not ship an API newer than the floor without an explicit availability check.
+- **No compatibility layers or speculative fallbacks.** No support below macOS 14. Migration code lives only in
   `Tinycast/Migrations/` and is deleted after one stable release ([migrations.md](docs/migrations.md)).
 
 Carbon is a deliberate capability-gap dependency rather than inertia: nothing modern registers a
@@ -134,9 +133,9 @@ feature's doc, under its own `## Invariants`.
   constant or type instead. Cap 100 characters, delete rather than update, and never comment a change
   you just made. Nothing lints this; get it right the first time.
   Full rules: [standards.md#comments](docs/standards.md#comments).
-- **Debug builds are their own channel** — `Tinycast Dev.app` / `com.tinycast.app.dev` — so a local run
-  never shares prefs, caches, TCC grants or the login item with an installed copy. Anything newly
-  persisted must stay keyed by `Bundle.main.bundleIdentifier`.
+- **Debug builds are their own channel** — `Tinycast Sonoma Dev.app` / `com.tinycast.app.sonoma.dev` —
+  so a local run never shares prefs, caches, TCC grants or the login item with an installed copy.
+  Anything newly persisted must stay keyed by `Bundle.main.bundleIdentifier`.
 - **XcodeGen owns the project.** `Tinycast.xcodeproj` is committed but generated from `project.yml`;
   after editing it, run `xcodegen generate` and commit both. No SwiftPM, and never `Bundle.module`.
 

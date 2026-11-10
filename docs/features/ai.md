@@ -22,9 +22,8 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   other AI key, so an import can never arm a feature it cannot configure.
 - **Installed model discovery is per-provider.** Settings → AI → Providers keeps Codex, Claude, Grok,
   OpenCode and Cursor visible with an individual toggle for each, all off by default. Turning one off cancels
-  its check, clears its catalog and releases its process; Apple Intelligence is the default route when
-  available, and saved API connections stay available.
-- **A route that is off is off everywhere.** The on-device model and every API connection have the
+  its check, clears its catalog and releases its process; saved API connections stay available.
+- **A route that is off is off everywhere.** Every API connection has the
   same switch an installed tool has (`aiDisabledRoutes`, by `AIModelSource.storageKey`). Off leaves
   the route configured — a connection keeps its key — but `AIModelOption.availableGroups` drops it
   from every picker, `AIProviderFactory` refuses it with a message, and a default that pointed at it
@@ -51,11 +50,8 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   never a scope limit — and asks for honest comparisons; it does not instruct the model to favour
   Tinycast over anything else. It is not shown in the pane, and `AIPreamble.swift` holds the only
   copy of it — edit the prompt there, not here. `compose` returns `nil` when the user has turned
-  the system prompt off or the chat is on Apple Intelligence, and every transport drops a nil
-  instruction, so a turn then carries none. A preset's text still rides with the switch off, never
-  on device. The on-device model is small enough that any standing
-  instruction — the preamble, the choices request or the user's own text — steers every answer
-  toward it, so that route always gets the conversation alone.
+  the system prompt off, and every transport drops a nil instruction, so a turn then carries none.
+  A preset's text still rides with the switch off.
 - **API keys live only in the login Keychain.** `AIConnection` persists the provider, endpoint and
   model identifiers in `UserDefaults`; it never contains a key. Keys are addressed by connection UUID
   through `KeychainSecretStore.aiAPIKeys`, and never enter logs, errors or settings backups. A key is issued for one
@@ -75,11 +71,10 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   running tool loop receives an explainable failure result. The same session is lent to the Codex
   and Claude routes as a bearer header, so a hosted server is signed into once for every route.
   See [MCP](mcp.md).
-- **The chat model is the routing decision.** It names the on-device model, a model exposed by the
-  installed Codex, Claude, Grok, OpenCode or Cursor command, or one saved API connection and model. Installed
+- **The chat model is the routing decision.** It names a model exposed by the installed Codex,
+  Claude, Grok, OpenCode or Cursor command, or one saved API connection and model. Installed
   routes also carry their reasoning effort when the selected model supports one. A removed route
-  falls forward to the on-device model when this Mac
-  has one, then to another usable API model, then to no selection. Discovering an installed command
+  falls forward to another usable API model, then to no selection. Discovering an installed command
   never silently selects a networked model.
 - **Every chat keeps its own model.** `ChatSession.model` is stamped on the first send and changed by
   either surface's picker; `conversation_details` stores it, so reopening a chat reopens its model and
@@ -134,9 +129,7 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   scope of the chat's last send. The stamp's instructions take the user prompt's place in
   `AIInstructions.compose(presetInstructions:…)` and are sent even with the system prompt off —
   picking a preset is the reader asking for them — while the preamble still follows its own switch.
-  **Apple Intelligence has no presets:** `compose` returns `nil` on device, the composer hides the
-  preset menu while the chat's route is on device, and the preset editor never offers that route as
-  a preset's model. See [Chat presets](#chat-presets).
+  See [Chat presets](#chat-presets).
 - **A reply can end on choices, and a choice is only ever a message.** The preamble lets the model
   close a reply with a fenced `choices` block, one option per line. `ChatChoices.split` lifts the
   fence out of the prose (an unclosed one mid-stream too, so it never flashes as code). A small
@@ -149,7 +142,7 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   leading-aligned `ChatFlowLayout`: in the window they rise out of the composer, sitting on its top edge until the reader starts typing; in Quick AI they close the
   transcript. A click sends the option as the reader's next message, through the same `send` a
   typed one takes. Older replies lose their chips, since only the last question is still open. It is text in, text out, so it
-  works on every route but Apple Intelligence — and not at all with the system prompt switched off,
+  works on every route — and not at all with the system prompt switched off,
   which drops the preamble that describes it. Settings → AI → Suggested replies (`aiChoices`, on by default) turns
   them off on purpose: `AIInstructions.compose` leaves `AIPreamble.choices` out, so no turn asks for
   them, and neither surface draws chips. A fence a model writes anyway is still lifted out of the
@@ -159,20 +152,6 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   reports all of it, the Anthropic API its cache, OpenAI-shaped routes their reasoning tokens and
   OpenRouter its cost. `ChatMessage.usage` holds it and `message_details` keeps it, so a reopened chat
   still knows its last turn.
-- **The on-device route is configured by having a Mac.** `.appleIntelligence` takes no key, opens no
-  socket and names no endpoint, so the Keychain, HTTPS and ephemeral-session rules below have nothing
-  to bind to — the Settings pane must never grow a credential field for it. It is text-only and
-  offers no web search, no instructions ride ahead of its turns, and history is bounded to
-  `AppleIntelligence.contextBudget` rather than the cloud routes' ~100 KB because the on-device window
-  holds a prompt and its reply together. Availability is asked for each time, never cached at launch:
-  the model finishes downloading mid-session, and reading it inside a view body leaves SwiftUI
-  observing the framework's own state. `modelNotReady` is also what a Mac whose profile switches
-  Apple Intelligence off reports, so its copy says only that the model is not available and never
-  promises a download.
-- **An unavailable on-device model is reported, never rerouted.** Fall-forward exists for a route the
-  reader *removed*; a Mac with Apple Intelligence switched off keeps its stored selection and is told
-  why, because silently moving someone from a free, private, local model onto a billed endpoint is
-  the one redirection this feature must never perform.
 - **Installed commands reuse their own login.** Tinycast launches the user's `codex`, `claude`, `grok` or
   `opencode` executable without asking for or storing another key. Codex inherits the user's normal
   home and credential-store setting; Claude, Grok, OpenCode and Cursor inherit their normal configuration. Tinycast
@@ -335,23 +314,21 @@ bottom with the model picker. ⌘J hands a Quick AI conversation to the window.
   whole — truncating what someone just typed is worse than the provider's own error — keeps images
   and documents only on that turn and only up to `AIAttachmentBudget`, inlining an attached text
   file into that turn alone, and walks older text newest-first into a
-  budget the *route* names: ~100 KB for a cloud endpoint, `AppleIntelligence.contextBudget` for the
-  on-device model. Every transport funnels through `requestMessages(textBudget:)`, so no route can
+  budget the route names: ~100 KB. Every transport funnels through `requestMessages(textBudget:)`, so no route can
   resend every image each turn or let history grow the payload as a chat goes on. The composer refuses a picture
   past the budget and says so, rather than letting send time drop it silently.
 
 ## Connections and routing
 
-`AIModelSelection` has seven cases: `.appleIntelligence`, `.codex`, `.claude`, `.grok`, `.openCode`,
+`AIModelSelection` has six cases: `.codex`, `.claude`, `.grok`, `.openCode`,
 `.cursor` and `.api`.
-The first needs no connection at all. The next five name a model from an installed command and carry
+The first five name a model from an installed command and carry
 no credential. `.api` points at one `AIConnection`; `AIProviderKind` exposes four named presets plus a
 custom OpenAI-compatible route. Decoding still accepts the old `.chatGPT` spelling and writes it back
 as `.codex`, so an existing selection survives the rename.
 
 | Setting | Transport | Default base URL |
 | --- | --- | --- |
-| Apple Intelligence | Foundation Models, on device | none |
 | Codex | installed `codex app-server` | user's Codex account |
 | Claude | installed `claude -p` | user's Claude login |
 | Grok | installed `grok --prompt-file` | user's Grok login |
@@ -446,25 +423,13 @@ The direct OpenAI route sends a declared reasoning effort and does not request v
 its encrypted reasoning items are replayed between tool rounds independently of the thinking indicator.
 
 `AIProviderFactory` resolves the selection, validates an API endpoint, reads an API key at the last
-possible moment and returns `AppleIntelligenceProvider`, `HTTPAIProvider`, `CodexInstalledProvider`
-or `InstalledCLIProvider`. A consumer should hold neither settings nor credentials itself. The
-`selection` and `guardrails` overload lets Quick Actions pick its own route and ask for permissive
-content transformations without a second factory.
+possible moment and returns `HTTPAIProvider`, `CodexInstalledProvider`
+or `InstalledCLIProvider`. A consumer should hold neither settings nor credentials itself.
 
 `AIModelOption.groupedCatalog` is the Settings picker catalog for both AI and Quick Actions. Provider
 sections, ordering and model labels therefore cannot drift between the panes. Each route stores its
 own complete `AIModelSelection`, including the selected reasoning effort for installed models and
 OpenRouter models that offer one.
-
-`AppleIntelligenceProvider` is the only route whose model is a local process. It builds a `Transcript`
-from the turns ahead of the newest user message and streams the rest as the prompt, so a conversation
-resumes rather than being replayed as one blob. Foundation Models reports the whole answer so far in
-every snapshot while every other transport speaks in deltas; `AppleIntelligenceDelta` is the one place
-that difference lives. Guardrails are a construction parameter rather than a constant: chat writes
-fresh prose, where the default filter belongs, and a later text-rewrite feature transforms text the
-reader already wrote, which is what `permissiveContentTransformations` exists for — so that feature
-needs no second provider. `GenerationError` never reaches the transcript as-is; its `Context` carries
-a debug description written for a log, so each case maps to a plain sentence instead.
 
 ## Chat surfaces
 
@@ -698,13 +663,6 @@ window, and every chat action either surface sends — is the nineteenth feature
 - Switching while a response streams does not stop or reroute that response; the new model applies to
   the following message.
 - With no available model, the menu offers Configure AI and opens the AI Settings pane.
-- With Apple Intelligence available and nothing else configured, opening chat or the AI pane leaves
-  the selection reading **Apple Intelligence** without asking for anything.
-- With it switched off in System Settings, the pane says so and chat says so; neither moves the
-  reader onto a configured API connection. Both the AI pane and the providers panel offer Open System
-  Settings…, which lands on the Apple Intelligence & Siri pane.
-- On a Mac that does not support Apple Intelligence, its toggle in the providers panel reads off and
-  cannot be changed, and no Open System Settings… button appears.
 - Install and sign in to each supported command outside Tinycast, choose one of its discovered models,
   and confirm Chat and each model-backed Quick Action use it without showing a credential field.
 - Sign out of an installed command, press Check Again, and confirm its models leave both pickers while
@@ -764,8 +722,6 @@ window, and every chat action either surface sends — is the nineteenth feature
   preset chat still follows its instructions.
 - In a preset chat, switch a server the preset turned off back on and send. After a relaunch the chat
   reopens with that server on.
-- Switch an empty chat to Apple Intelligence: the preset menu goes away, and the preset editor's model
-  menu offers no Apple Intelligence.
 - Pick a preset in an empty chat and press ⌘N: the chat goes back to No Preset. Pick it again, close
   the window and reopen it with Recent Conversation set: the preset is still picked.
 - In an empty chat, pick a preset from the composer menu, then No Preset: the model and tools go back
@@ -776,7 +732,7 @@ window, and every chat action either surface sends — is the nineteenth feature
   instructions, `ChatPresetStore`'s validation and unreadable-file refusal, endpoints,
   request bodies, stream decoding including leading
   think tags across content and SSE splits, persistence repair,
-  Codex framing, on-device routing, the two MCP launch encodings and the two consent channels, the
+  Codex framing, the two MCP launch encodings and the two consent channels, the
   shown-model and switched-off-route rules, and a tool's override from settings to launch),
   `opencode-mcp-test` (bridge authentication, scoped catalog, exact permissions, calls and limits),
   `syntax-highlight-test` (every grammar's tokens, language aliases, the size limit, and that every
@@ -785,10 +741,7 @@ window, and every chat action either surface sends — is the nineteenth feature
   mid-stream hold-back, `ChatHistoryStore` with renames, pins and preset stamps, an empty chat
   following its preset,
   `AIToolLoopProvider`, regenerate, `ChatReasoning`'s display text, the window's open policy and
-  `AIChatSurfacesState`'s one-live-place rule),
-  and `apple-intelligence-test` (status copy, snapshot deltas,
-  transcript assembly and error mapping, plus an optional real generation enabled with
-  `TINYCAST_TEST_APPLE_INTELLIGENCE=1` when this Mac can run one), all in
+  `AIChatSurfacesState`'s one-live-place rule), all in
   `run-tests.sh`.
 
 ## Installed commands
@@ -904,12 +857,11 @@ tool session and retain the deny-all configuration.
 route maps them itself:
 
 A text-ish file is deliberately absent from this table: it is inlined as text before any transport
-sees the turn, so every route — the on-device model and all installed CLI transports included — takes one with no
+sees the turn, so every route — all installed CLI transports included — takes one with no
 transport code at all.
 
 | Route | Web search | Images | PDFs | MCP tools |
 | --- | --- | --- | --- | --- |
-| Apple Intelligence | never — it reaches nothing | never — the model is text-only | never | never |
 | Codex | thread-scoped `web_search` config | `image` input part | never — the app-server takes no document part | Tinycast's servers, added as launch overrides; the reader's own are disabled by name |
 | Claude command | never | base64 `image` block in its stream-json user message | never | Tinycast's servers, through `--strict-mcp-config` and a private config file — an empty one when there are none, and neither flag under a managed MCP policy |
 | Grok command | never | never | never | the global config still loads — `--deny *` refuses the call |
@@ -1032,8 +984,7 @@ asks through a `confirmationDialog` first. Chats a deleted preset started keep t
 A preset is picked only from the composer's preset menu, beside `+`, while the chat has no message —
 never from the launcher, a shortcut or a deep link. The menu offers No Preset, every preset and
 Manage Presets…; with none saved it offers only Add Chat Preset…, which reveals the Settings section.
-Once the first message is sent the menu becomes a plain label naming the chat's preset. Neither
-shows while the chat's route is Apple Intelligence.
+Once the first message is sent the menu becomes a plain label naming the chat's preset.
 
 A plain chat started after a preset chat, in the same state, goes back to every tool server on.
 ⌘N in an empty chat drops the preset picked in it, and the window's open policy never replaces an
@@ -1068,7 +1019,7 @@ control (`AIProviderTab`), and the chosen page is kept from one provider to the 
   field is left. It stays while the tool is off, so a wrong path can be fixed before it is switched
   on. A name Tinycast sets itself says its value is not used.
 
-An API connection has the first two pages, and the on-device model, with one, shows no control. The
+An API connection has the first two pages. The
 panel draws its Liquid Glass behind its content rather than around it
 (`settingsEditorPanelSurface(controlsOnGlass: false)`), because the page control sits directly on the
 surface and a segmented control drawn on glass loses its accent colour.

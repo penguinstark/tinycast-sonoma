@@ -613,7 +613,7 @@ global Show in launcher switch, or this extension's — because the ranker never
 ## Deeplinks
 
 Tinycast registers `raycast`, `com.raycast` and its own scheme to receive extension links. The own
-scheme is `tinycast`, or `tinycast-dev` in Debug; `ExtensionDeepLink.claims` accepts both, and Copy
+scheme is `tinycast-sonoma`, or `tinycast-sonoma-dev` in Debug; `ExtensionDeepLink.claims` accepts both, and Copy
 Deeplink builds an extension row's link in the running channel's scheme. An installed Raycast
 competes for its schemes, and macOS chooses which app receives a link.
 
@@ -874,7 +874,7 @@ node test.mjs ~/.config/raycast/extensions/<uuid> [command]
 
 # 3. the real Swift engine, against JavaScriptCore
 Scripts/run-tests.sh ext-test
-"${TMPDIR:-/tmp}"/tinycast-harness/ext-test ~/Library/Application\ Support/com.tinycast.app.dev/extensions/<name> [command]
+"${TMPDIR:-/tmp}"/tinycast-harness/ext-test ~/Library/Application\ Support/com.tinycast.app.sonoma.dev/extensions/<name> [command]
 ```
 
 `ext-test` compiles the real engine sources — there is no copy to keep in sync. `EXT_TEST_VERBOSE=1`
@@ -889,7 +889,7 @@ status items stay hidden so a test run cannot interfere with the running app's m
 
 ```sh
 EXT_TEST_MENU_BAR=1 "${TMPDIR:-/tmp}/tinycast-harness/ext-test" \
-  "$HOME/Library/Application Support/com.tinycast.app.dev/extensions/opencodex-usage" usage-menu-bar
+  "$HOME/Library/Application Support/com.tinycast.app.sonoma.dev/extensions/opencodex-usage" usage-menu-bar
 ```
 
 ### Debugging a failing extension

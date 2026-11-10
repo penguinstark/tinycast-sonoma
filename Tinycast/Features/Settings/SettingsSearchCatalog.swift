@@ -126,9 +126,6 @@ enum SettingsSearchCatalog {
             .generalGeneral, "Show in menu bar",
             keywords: ["menubar", "status item", "icon", "hide"]),
         .init(
-            .generalGeneral, "Automatically check for updates",
-            keywords: ["software", "update", "automatic", "disable", "popup"]),
-        .init(
             .generalGeneral, "Pop to Root Search",
             keywords: ["reset", "timeout", "back"]),
         .init(
@@ -329,7 +326,7 @@ enum SettingsSearchCatalog {
     private static let quickActions: [SettingsSearchEntry] = [
         .init(
             pane: .quickActions,
-            keywords: ["selected text", "rewrite", "translate", "summarize"]),
+            keywords: ["selected text", "rewrite", "summarize"]),
         .init(
             .quickActionsQuickActions, "Enable Quick Actions",
             keywords: ["selected text", "accessibility"]),
@@ -341,10 +338,7 @@ enum SettingsSearchCatalog {
             keywords: ["new", "custom", "prompt", "instructions", "alias"]),
         .init(
             .quickActionsModel, "Model",
-            keywords: ["llm", "ai", "default"]),
-        .init(
-            .quickActionsTranslate, "Translate to",
-            keywords: ["language", "locale"])
+            keywords: ["llm", "ai", "default"])
     ]
 
     private static let dictation: [SettingsSearchEntry] = [
@@ -678,9 +672,6 @@ enum SettingsSearchCatalog {
         .init(
             pane: .about,
             keywords: ["version", "licence", "license", "credits"]),
-        .init(
-            .aboutAbout, "Check for Updates",
-            keywords: ["version", "upgrade", "release"]),
         .init(
             group: .aboutLinks, "Links",
             keywords: ["github", "source", "issues", "website"]),

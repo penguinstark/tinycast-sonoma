@@ -4,7 +4,6 @@ set -euo pipefail
 
 APP="${1:?usage: package-release.sh <app> <dmg> <zip>}" DMG="${2:?}" ZIP="${3:?}"
 : "${SIGNING_IDENTITY:?}" "${NOTARY_KEY_P8_BASE64:?}" "${NOTARY_KEY_ID:?}" "${NOTARY_ISSUER_ID:?}"
-: "${UPDATE_SIGNING_KEY:?}"
 KEY="$(mktemp)" STAGE="$(mktemp -d)"
 trap 'rm -rf "$KEY" "$STAGE"' EXIT
 base64 --decode <<< "$NOTARY_KEY_P8_BASE64" > "$KEY"
@@ -23,9 +22,8 @@ if [ "$(jq -r '.status // empty' <<< "$RESULT")" != Accepted ]; then
     exit 1
 fi
 
-# The DMG's ticket covers the app inside it, so the updater's zip carries one too.
+# The DMG's ticket covers the app inside it, so the zip carries one too.
 xcrun stapler staple "$DMG"
 xcrun stapler staple "$APP"
 # Only `ditto` keeps the signature verifiable; plain `zip` drops symlinks and the seal.
 ditto -c -k --keepParent --sequesterRsrc "$APP" "$ZIP"
-"$(dirname "$0")/sign-update.swift" "$APP" "$ZIP"

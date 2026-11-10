@@ -6,11 +6,11 @@ if (( $# < 1 || $# > 4 )); then
     printf 'Usage: %s AUDIO [HELPER_APP] [MODEL_DIRECTORY] [MODEL]\n' "${0##*/}" >&2
     exit 2
 fi
-helper=${2:-"$repo/build/DerivedData/Build/Products/Debug/Tinycast Dev.app/Contents/Helpers/Tinycast Dev Dictation.app"}
-models=${3:-"$HOME/Library/Caches/com.tinycast.app.dev/Dictation"}
+helper=${2:-"$repo/build/DerivedData/Build/Products/Debug/Tinycast Sonoma Dev.app/Contents/Helpers/Tinycast Sonoma Dev Dictation.app"}
+models=${3:-"$HOME/Library/Caches/com.tinycast.app.sonoma.dev/Dictation"}
 binary=$(mktemp /tmp/tinycast-dictation-benchmark.XXXXXX)
 trap 'rm -f "$binary"' EXIT
-swiftc -O -swift-version 6 -target "$(uname -m)-apple-macos26.0" \
+swiftc -O -swift-version 6 -target "$(uname -m)-apple-macos14.0" \
     "$repo/Tests/dictation-performance.swift" \
     "$repo/Tinycast/Platform/ProcessExit.swift" \
     "$repo/Tinycast/Features/Dictation/Model/DictationModel.swift" \

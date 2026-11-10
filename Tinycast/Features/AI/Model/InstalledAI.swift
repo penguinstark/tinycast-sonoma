@@ -95,7 +95,7 @@ extension AIModelSource {
         case .grok: return .grok
         case .openCode: return .openCode
         case .cursor: return .cursor
-        case .appleIntelligence, .api: return nil
+        case .api: return nil
         }
     }
 }
